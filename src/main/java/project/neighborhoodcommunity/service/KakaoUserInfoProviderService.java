@@ -43,7 +43,7 @@ public class KakaoUserInfoProviderService {
         requestSignUpDto.setKakaoid(root.get("id").asText());
         requestSignUpDto.setEmail(root.get("kakao_account").get("email").asText());
         requestSignUpDto.setNickname(root.get("properties").get("nickname").asText());
-        requestSignUpDto.setProfileImg(root.get("properties").get("profile_image").asText());
+        requestSignUpDto.setProfile_img(root.get("properties").get("profile_image").asText());
         return requestSignUpDto;
     }
 }

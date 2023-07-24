@@ -22,10 +22,7 @@ import org.springframework.web.context.WebApplicationContext;
 import project.neighborhoodcommunity.dto.TokenDto;
 import project.neighborhoodcommunity.dto.RequestSignUpDto;
 import project.neighborhoodcommunity.entity.User;
-import project.neighborhoodcommunity.service.KakaoAccessTokenProviderService;
-import project.neighborhoodcommunity.service.KakaoLoginService;
-import project.neighborhoodcommunity.service.KakaoUserInfoProviderService;
-import project.neighborhoodcommunity.service.UserService;
+import project.neighborhoodcommunity.service.*;
 
 import java.util.Optional;
 
@@ -58,6 +55,9 @@ public class KakaoLoginTest {
     @MockBean(name = "userService")
     private UserService userService;
 
+    @MockBean
+    private TokenService tokenService;
+
     @BeforeEach
     void setUp(
             final WebApplicationContext context,
@@ -77,7 +77,7 @@ public class KakaoLoginTest {
         RequestSignUpDto requestSignUpDto = new RequestSignUpDto();
         requestSignUpDto.setEmail("aossuper7@naver.com");
         requestSignUpDto.setNickname("박정민");
-        requestSignUpDto.setProfileImg("http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg");
+        requestSignUpDto.setProfile_img("http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg");
         TokenDto tokenDto = new TokenDto(
                 "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhb3NzdXBlcjdAbmF2ZXIuY29tIiwiZXhwIjoxNjkwMTI3NDk5fQ.R2j5PVz57YpOzTthYzNcrbRlYgy4ddSFv5hxm14o1PzxRhYOX3AVH2wNkDZrLJzdoTgPoZ67CYgNTlOyjdXcOw",
                 "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhb3NzdXBlcjdAbmF2ZXIuY29tIiwiZXhwIjoxNjkxMzM1Mjk5fQ.c-NdhuORzcMBWAr2NscETTeI8uujEuMVmg8NFA0HjA9oS6kO8nECnlO31hOPm8sw0LJVcIMK1yPAlCtJTh29Yw");
@@ -85,8 +85,8 @@ public class KakaoLoginTest {
         // When
         when(kakaoAccessTokenProviderService.getAccessToken(any())).thenReturn("test_access_token");
         when(kakaoUserInfoProviderService.getUserInfo(any())).thenReturn(requestSignUpDto);
-        when(kakaoLoginService.attemptLogin(any())).thenReturn(true);
-        when(kakaoLoginService.createToken(any())).thenReturn(tokenDto);
+        when(kakaoLoginService.attemptLogin(any())).thenReturn(Optional.of(new User()));
+        when(tokenService.createToken(any())).thenReturn(tokenDto);
 
         // Then
         mockMvc.perform(get("/kakao")
@@ -112,12 +112,12 @@ public class KakaoLoginTest {
         RequestSignUpDto requestSignUpDto = new RequestSignUpDto();
         requestSignUpDto.setEmail("aossuper7@naver.com");
         requestSignUpDto.setNickname("박정민");
-        requestSignUpDto.setProfileImg("http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg");
+        requestSignUpDto.setProfile_img("http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg");
 
         // When
         when(kakaoAccessTokenProviderService.getAccessToken(any())).thenReturn("test_access_token");
         when(kakaoUserInfoProviderService.getUserInfo(any())).thenReturn(requestSignUpDto);
-        when(kakaoLoginService.attemptLogin(any())).thenReturn(false);
-        when(userService.join(any())).thenReturn(new User());
+        when(kakaoLoginService.attemptLogin(any())).thenReturn(Optional.of(new User()));
+        when(userService.join(any())).thenReturn(Optional.of(new User()));
     }
 }

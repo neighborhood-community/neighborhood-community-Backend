@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import project.neighborhoodcommunity.dto.TokenDto;
 import project.neighborhoodcommunity.dto.RequestSignUpDto;
-import project.neighborhoodcommunity.service.KakaoAccessTokenProviderService;
-import project.neighborhoodcommunity.service.KakaoLoginService;
-import project.neighborhoodcommunity.service.KakaoUserInfoProviderService;
+import project.neighborhoodcommunity.entity.User;
+import project.neighborhoodcommunity.service.*;
 import project.constant.CommonResponse;
-import project.neighborhoodcommunity.service.UserService;
+
+import java.util.Optional;
 
 import static project.constant.CommonResponseStatus.*;
 
@@ -24,19 +24,20 @@ public class SignInUpController {
     private final KakaoUserInfoProviderService kakaoUserInfoProviderService;
     private final KakaoLoginService kakaoLoginService;
     private final UserService userService;
+    private final TokenService tokenService;
 
-    //https://kauth.kakao.com/oauth/authorize?client_id=26e821a2d76d661a073c984780a249f1&redirect_uri=http://localhost:8080&response_type=code
+    //https://kauth.kakao.com/oauth/authorize?client_id=26e821a2d76d661a073c984780a249f1&redirect_uri=http://localhost:5173/verify&response_type=code
     @GetMapping("/kakao")
     @ResponseBody
     public ResponseEntity<?> kakaoLogin(String code) {
         String accessToken = kakaoAccessTokenProviderService.getAccessToken(code);
         RequestSignUpDto requestSignUpDto = kakaoUserInfoProviderService.getUserInfo(accessToken);
-        boolean isLoginSuccess = kakaoLoginService.attemptLogin(requestSignUpDto.getKakaoid());
+        Optional<User> result = kakaoLoginService.attemptLogin(requestSignUpDto.getKakaoid());
 
-        if (!isLoginSuccess)
-            userService.join(requestSignUpDto);
+        if (result.isEmpty())
+            result = userService.join(requestSignUpDto);
 
-        TokenDto tokenDto = kakaoLoginService.createToken(requestSignUpDto.getKakaoid());
+        TokenDto tokenDto = tokenService.createToken(result.get());
         return new ResponseEntity<>(new CommonResponse<>(tokenDto, SUCCESS), HttpStatus.OK);
     }
 }

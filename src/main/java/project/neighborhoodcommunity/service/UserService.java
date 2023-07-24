@@ -8,6 +8,8 @@ import project.neighborhoodcommunity.dto.RequestSignUpDto;
 import project.neighborhoodcommunity.entity.User;
 import project.neighborhoodcommunity.repository.UserRepository;
 
+import java.util.Optional;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -15,10 +17,10 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public User join(RequestSignUpDto requestSignUpDto) {
+    public Optional<User> join(RequestSignUpDto requestSignUpDto) {
         User user = buildUserEntity(requestSignUpDto);
         userRepository.save(user);
-        return user;
+        return Optional.of(user);
     }
 
     private User buildUserEntity(RequestSignUpDto requestSignUpDto) {

@@ -1,6 +1,5 @@
 = 카카오 Oauth2
 
-=== API 요청
 operation::kakao-login/oauth/kakao-login-success[snippets='query-parameters,http-request']
 
 operation::kakao-login/oauth/kakao-login-success[snippets='http-response,response-fields']

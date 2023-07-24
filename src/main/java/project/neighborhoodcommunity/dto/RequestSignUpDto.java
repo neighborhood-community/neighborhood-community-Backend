@@ -12,5 +12,5 @@ public class RequestSignUpDto {
     private String kakaoid;
     private String email;
     private String nickname;
-    private String profileImg;
+    private String profile_img;
 }
