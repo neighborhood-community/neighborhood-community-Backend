@@ -41,6 +41,11 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
 
+                .authorizeHttpRequests()
+                .requestMatchers("/post/**").authenticated()
+                .anyRequest().permitAll()
+                .and()
+
 //                .requiresChannel()
 //                .anyRequest().requiresSecure()
 //                .and()

@@ -58,12 +58,12 @@ public class JwtTokenProvider implements InitializingBean {
                 .compact();
     }
 
-    public String createToken(Authentication authentication) {
+    public String createRefreshToken(String username) {
         long now = (new Date()).getTime();
         Date validity = new Date(now + this.refreshTokenValidityInSeconds);
 
         return Jwts.builder()
-                .setSubject(authentication.getName())
+                .setSubject(username)
                 .signWith(refreshSecretKey, SignatureAlgorithm.HS512)
                 .setExpiration(validity)
                 .compact();

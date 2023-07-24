@@ -7,19 +7,19 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
-import project.response.ErrorCode;
-import project.response.ErrorResponse;
+import project.constant.CommonResponse;
+import project.constant.CommonResponseStatus;
 
 import java.io.IOException;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class JwtFilter extends GenericFilterBean {
 
     private final JwtTokenProvider jwtTokenProvider;
@@ -54,10 +54,10 @@ public class JwtFilter extends GenericFilterBean {
     }
 
     private void notFoundJwtResponse(HttpServletResponse response) throws IOException {
-        ErrorResponse errorResponse = new ErrorResponse(ErrorCode.UNAUTHORIZED);
+        CommonResponse<CommonResponseStatus> commonResponse = new CommonResponse<>(CommonResponseStatus.UNAUTHORIZED);
         ObjectMapper objectMapper = new ObjectMapper();
 
-        String jsonBody = objectMapper.writeValueAsString(errorResponse);
+        String jsonBody = objectMapper.writeValueAsString(commonResponse);
 
         response.setCharacterEncoding("UTF-8");
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
