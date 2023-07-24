@@ -3,8 +3,4 @@
 === API 요청
 operation::kakao-login/oauth/kakao-login-success[snippets='query-parameters,http-request']
 
-=== 로그인 성공
 operation::kakao-login/oauth/kakao-login-success[snippets='http-response,response-fields']
-
-=== 로그인 실패(회원가입 요청)
-operation::kakao-login/oauth/kakao-login-failure[snippets='http-response,response-fields']

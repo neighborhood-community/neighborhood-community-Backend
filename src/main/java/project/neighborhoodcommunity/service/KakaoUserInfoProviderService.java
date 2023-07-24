@@ -40,6 +40,7 @@ public class KakaoUserInfoProviderService {
 
     private RequestSignUpDto extractUserInfo(JsonNode root) {
         RequestSignUpDto requestSignUpDto = new RequestSignUpDto();
+        requestSignUpDto.setKakaoid(root.get("id").asText());
         requestSignUpDto.setEmail(root.get("kakao_account").get("email").asText());
         requestSignUpDto.setNickname(root.get("properties").get("nickname").asText());
         requestSignUpDto.setProfileImg(root.get("properties").get("profile_image").asText());

@@ -9,6 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RequestSignUpDto {
 
+    private String kakaoid;
     private String email;
     private String nickname;
     private String profileImg;

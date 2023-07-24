@@ -18,6 +18,7 @@ public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String kakaoid;
     private String email;
     private String nickname;
     private String region;

@@ -32,7 +32,7 @@ public class KakaoAccessTokenProviderService {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code");
         params.add("client_id", "26e821a2d76d661a073c984780a249f1");
-        params.add("redirect_url", "http://localhost:8080");
+        params.add("redirect_url", "localhost:5173/verify");
         params.add("code", code);
         return params;
     }

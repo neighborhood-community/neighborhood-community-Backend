@@ -25,6 +25,7 @@ import project.neighborhoodcommunity.entity.User;
 import project.neighborhoodcommunity.service.KakaoAccessTokenProviderService;
 import project.neighborhoodcommunity.service.KakaoLoginService;
 import project.neighborhoodcommunity.service.KakaoUserInfoProviderService;
+import project.neighborhoodcommunity.service.UserService;
 
 import java.util.Optional;
 
@@ -51,8 +52,11 @@ public class KakaoLoginTest {
     @MockBean(name = "kakaoUserInfoProviderService")
     private KakaoUserInfoProviderService kakaoUserInfoProviderService;
 
-    @MockBean
+    @MockBean(name = "kakaoLoginService")
     private KakaoLoginService kakaoLoginService;
+
+    @MockBean(name = "userService")
+    private UserService userService;
 
     @BeforeEach
     void setUp(
@@ -81,11 +85,13 @@ public class KakaoLoginTest {
         // When
         when(kakaoAccessTokenProviderService.getAccessToken(any())).thenReturn("test_access_token");
         when(kakaoUserInfoProviderService.getUserInfo(any())).thenReturn(requestSignUpDto);
-        when(kakaoLoginService.login(any())).thenReturn(Optional.of(new User()));
-        when(kakaoLoginService.loginSuccessToken(any(User.class))).thenReturn(tokenDto);
+        when(kakaoLoginService.attemptLogin(any())).thenReturn(true);
+        when(kakaoLoginService.createToken(any())).thenReturn(tokenDto);
 
         // Then
-        mockMvc.perform(get("/kakao").param("code", "{AuthorizationCode}"))
+        mockMvc.perform(get("/kakao")
+                        .header("Host", "43.202.6.185:8080")
+                        .param("code", "AuthorizationCode"))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andDo(restDocs.document(
@@ -111,22 +117,7 @@ public class KakaoLoginTest {
         // When
         when(kakaoAccessTokenProviderService.getAccessToken(any())).thenReturn("test_access_token");
         when(kakaoUserInfoProviderService.getUserInfo(any())).thenReturn(requestSignUpDto);
-        when(kakaoLoginService.login(any())).thenReturn(Optional.empty());
-
-        // Then
-        mockMvc.perform(get("/kakao").param("code", "{AuthorizationCode}"))
-                .andExpect(status().isUnauthorized())
-                .andDo(print())
-                .andDo(restDocs.document(
-                        RequestDocumentation.queryParameters(
-                                RequestDocumentation.parameterWithName("code").description("Kakao authorization code")
-                        ),
-                        PayloadDocumentation.responseFields(
-                                fieldWithPath("code").description("Http 상태 코드"),
-                                fieldWithPath("message").description("상태 메시지"),
-                                fieldWithPath("data.email").description("사용자 Email"),
-                                fieldWithPath("data.nickname").description("사용자 nickname"),
-                                fieldWithPath("data.profileImg").description("사용자 프로필 사진")
-                        )));
+        when(kakaoLoginService.attemptLogin(any())).thenReturn(false);
+        when(userService.join(any())).thenReturn(new User());
     }
 }
