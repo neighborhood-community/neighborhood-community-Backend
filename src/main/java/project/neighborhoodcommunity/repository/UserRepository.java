@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByKakaoid(String kakaoId);
+    boolean existsByKakaoidAndRefreshToken(String kakaoId, String refreshToken);
 }

@@ -7,11 +7,9 @@ import project.neighborhoodcommunity.entity.User;
 import project.neighborhoodcommunity.jwt.JwtTokenProvider;
 import project.neighborhoodcommunity.repository.UserRepository;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
-public class TokenService {
+public class JwtTokenService {
 
     private final JwtTokenProvider jwtTokenProvider;
     private final UserRepository userRepository;
@@ -26,5 +24,9 @@ public class TokenService {
     private void saveRefreshToken(User user, String refreshToken) {
         user.setRefreshToken(refreshToken);
         userRepository.save(user);
+    }
+
+    public String createRefreshToken(String kakaoId) {
+        return jwtTokenProvider.createToken(kakaoId);
     }
 }

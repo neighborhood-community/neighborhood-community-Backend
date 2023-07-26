@@ -24,7 +24,7 @@ public class SignInUpController {
     private final KakaoUserInfoProviderService kakaoUserInfoProviderService;
     private final KakaoLoginService kakaoLoginService;
     private final UserService userService;
-    private final TokenService tokenService;
+    private final JwtTokenService jwtTokenService;
 
     //https://kauth.kakao.com/oauth/authorize?client_id=26e821a2d76d661a073c984780a249f1&redirect_uri=http://localhost:5173/verify&response_type=code
     @GetMapping("/kakao")
@@ -37,7 +37,12 @@ public class SignInUpController {
         if (result.isEmpty())
             result = userService.join(requestSignUpDto);
 
-        TokenDto tokenDto = tokenService.createToken(result.get());
+        TokenDto tokenDto = jwtTokenService.createToken(result.get());
         return new ResponseEntity<>(new CommonResponse<>(tokenDto, SUCCESS), HttpStatus.OK);
+    }
+
+    @GetMapping("/kakaotest")
+    public String kakaotest() {
+        return "redirect:https://kauth.kakao.com/oauth/authorize?client_id=26e821a2d76d661a073c984780a249f1&redirect_uri=http://localhost:5173/verify&response_type=code";
     }
 }

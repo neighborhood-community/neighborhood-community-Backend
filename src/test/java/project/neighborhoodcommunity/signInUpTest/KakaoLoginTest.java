@@ -56,7 +56,7 @@ public class KakaoLoginTest {
     private UserService userService;
 
     @MockBean
-    private TokenService tokenService;
+    private JwtTokenService jwtTokenService;
 
     @BeforeEach
     void setUp(
@@ -86,7 +86,7 @@ public class KakaoLoginTest {
         when(kakaoAccessTokenProviderService.getAccessToken(any())).thenReturn("test_access_token");
         when(kakaoUserInfoProviderService.getUserInfo(any())).thenReturn(requestSignUpDto);
         when(kakaoLoginService.attemptLogin(any())).thenReturn(Optional.of(new User()));
-        when(tokenService.createToken(any())).thenReturn(tokenDto);
+        when(jwtTokenService.createToken(any())).thenReturn(tokenDto);
 
         // Then
         mockMvc.perform(get("/kakao")

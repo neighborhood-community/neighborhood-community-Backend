@@ -1,0 +1,16 @@
+= JWT TEST
+
+=== 정상 AccessToken
+operation::jwt/pass_-jwt[snippets='http-request,request-headers,http-response']
+
+=== AccessToken 없이 API 요청
+operation::jwt/access-not-jwt[snippets='http-response']
+
+=== 시간 만료된 AccessToken
+operation::jwt/expired-jwt[snippets='http-response']
+
+=== 비 정상적인 AccessToken
+operation::jwt/illegal-jwt[snippets='http-response']
+
+=== AccessToken 재요청
+수정중

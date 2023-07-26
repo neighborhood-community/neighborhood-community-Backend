@@ -12,6 +12,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
+import project.constant.CommonResponseStatus;
+import project.neighborhoodcommunity.exception.InvalidJwtTokenException;
+import project.neighborhoodcommunity.exception.UnsuitableJwtException;
 
 import java.security.Key;
 import java.util.ArrayList;
@@ -87,25 +90,31 @@ public class JwtTokenProvider implements InitializingBean {
             return true;
         } catch (SecurityException | MalformedJwtException e) {
             logger.info("잘못된 JWT 서명입니다.");
+            throw new UnsuitableJwtException();
         } catch (ExpiredJwtException e) {
             logger.info("만료된 JWT 토큰입니다.");
+            throw new ExpiredJwtException(null, null, null);
         } catch (UnsupportedJwtException e) {
             logger.info("지원되지 않는 JWT 토큰입니다.");
+            throw new UnsuitableJwtException();
         } catch (IllegalArgumentException e) {
             logger.info("JWT 토큰이 잘못되었습니다.");
+            throw new UnsuitableJwtException();
         }
-        return false;
     }
 
-    public Claims parseToken(String token) {
+    public String extractIDs(String token) {
         try {
             return Jwts.parserBuilder()
                     .setSigningKey(refreshSecretKey)
                     .build()
                     .parseClaimsJws(token)
-                    .getBody();
+                    .getBody()
+                    .getSubject();
+        } catch (ExpiredJwtException e) {
+            throw new InvalidJwtTokenException(CommonResponseStatus.EXPIRED_JWT);
         } catch (JwtException e) {
-            throw new JwtException("유효하지 않은 토큰입니다.");
+            throw new InvalidJwtTokenException(CommonResponseStatus.UNSUITABLE_JWT);
         }
     }
 }
