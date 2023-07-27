@@ -1,0 +1,5 @@
+= Post
+
+=== 게시글 조회
+
+operation::viewing-post/search-post[snippets='http-request,query-parameters,http-response,response-fields']

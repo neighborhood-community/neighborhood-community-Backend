@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.18">
-<title>카카오 Oauth2</title>
+<title>Post</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,12 +438,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
+<h1>Post</h1>
+<div class="details">
+<span id="revnumber">version 0.0.1-SNAPSHOT</span>
+</div>
 </div>
 <div id="content">
 <div class="sect2">
-<h3 id="_카카오_oauth2">카카오 Oauth2</h3>
+<h3 id="_게시글_조회">게시글 조회</h3>
 <div class="sect3">
-<h4 id="_카카오_oauth2_query_parameters">Query parameters</h4>
+<h4 id="_게시글_조회_http_request">HTTP request</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /post?category=all&amp;page=1 HTTP/1.1
+Host: 43.202.6.185:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_게시글_조회_query_parameters">Query parameters</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -457,42 +470,97 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>code</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Kakao authorization code</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>category</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">모두 : all<br>
+반려동물 산책 : pet<br>
+영화 : movie<br>
+런닝 : running<br>
+헬스/필라테스/요가 : exercise</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>page</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1페이지당 8개의 게시글</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_카카오_oauth2_http_request">HTTP request</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /kakao?code=AuthorizationCode HTTP/1.1
-Host: 43.202.6.185:8080</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_카카오_oauth2_http_response">HTTP response</h4>
+<h4 id="_게시글_조회_http_response">HTTP response</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 474
+Content-Length: 2130
 
 {
   "code" : 200,
   "message" : "요청에 성공하였습니다.",
   "data" : {
-    "accessToken" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhb3NzdXBlcjdAbmF2ZXIuY29tIiwiZXhwIjoxNjkwMTI3NDk5fQ.R2j5PVz57YpOzTthYzNcrbRlYgy4ddSFv5hxm14o1PzxRhYOX3AVH2wNkDZrLJzdoTgPoZ67CYgNTlOyjdXcOw",
-    "refreshToken" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhb3NzdXBlcjdAbmF2ZXIuY29tIiwiZXhwIjoxNjkxMzM1Mjk5fQ.c-NdhuORzcMBWAr2NscETTeI8uujEuMVmg8NFA0HjA9oS6kO8nECnlO31hOPm8sw0LJVcIMK1yPAlCtJTh29Yw"
+    "totalPages" : 2,
+    "posts" : [ {
+      "id" : 1,
+      "category" : "pet",
+      "region" : "서울시",
+      "content" : "저희 강아지랑 함께 산책하실 분 있으시나요?",
+      "tags" : "강아지산책, 뽀삐",
+      "nickname" : "박정민"
+    }, {
+      "id" : 2,
+      "category" : "movie",
+      "region" : "경기도",
+      "content" : "인시디어스 시리즈 너무 재미있어요 ㅎㅎ",
+      "tags" : "인시디어스, 재미있다",
+      "nickname" : "박정민"
+    }, {
+      "id" : 3,
+      "category" : "running",
+      "region" : "서울시",
+      "content" : "오늘 여의도 한강공원 같이 런닝하실분 있으신가요?",
+      "tags" : "런닝, 함께해요",
+      "nickname" : "박정민"
+    }, {
+      "id" : 4,
+      "category" : "exercise",
+      "region" : "충청북도",
+      "content" : "6개월차부터 몸에 변화가 일어나네요 운동 재미있어요",
+      "tags" : "헬스, 근육남",
+      "nickname" : "박정민"
+    }, {
+      "id" : 5,
+      "category" : "pet",
+      "region" : "충청남도",
+      "content" : "강아지 키우고 싶은데 부모님이 반대를 해요 어떻게 하면 동의를 얻을 수 있을까요?",
+      "tags" : "키우고싶어요, 강아지",
+      "nickname" : "박정민"
+    }, {
+      "id" : 6,
+      "category" : "movie",
+      "region" : "강원도",
+      "content" : "넷플릭스 재미있는 영화 추천 해주세요 너무 흔한 영화는 말고요",
+      "tags" : "넷플릭스, 추천",
+      "nickname" : "박정민"
+    }, {
+      "id" : 7,
+      "category" : "running",
+      "region" : "경상남도",
+      "content" : "저랑 같이 매일 아침마다 런닝 하실분 계신가요?",
+      "tags" : "런닝, 매일아침",
+      "nickname" : "박정민"
+    }, {
+      "id" : 8,
+      "category" : "exercise",
+      "region" : "전라북도",
+      "content" : "필라테스 좋은 곳 어디인가요? 추천 해주세요",
+      "tags" : "필라테스",
+      "nickname" : "박정민"
+    } ]
   }
 }</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_카카오_oauth2_response_fields">Response fields</h4>
+<h4 id="_게시글_조회_response_fields">Response fields</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -510,22 +578,52 @@ Content-Length: 474
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>code</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Http 상태 코드</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Http 상태코드</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>message</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">상태 메시지</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청에 성공하였습니다.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.accessToken</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">액세스 토큰</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.totalPages</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">총 페이지 수</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.refreshToken</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글 리스트</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글 번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].category</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">리프레시 토큰</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">카테고리</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].region</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">지역</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].tags</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">태그 (,)로 구분</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].nickname</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">글쓴이</p></td>
 </tr>
 </tbody>
 </table>
@@ -535,7 +633,7 @@ Content-Length: 474
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-07-27 19:58:45 +0900
+Last updated 2023-07-28 01:12:54 +0900
 </div>
 </div>
 </body>

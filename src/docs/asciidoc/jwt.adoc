@@ -1,16 +1,22 @@
 = JWT TEST
 
+AccessToken 유효시간 : 30분 +
+RefreshToken 유효시간 : 2주
+
 === 정상 AccessToken
-operation::jwt/pass_-jwt[snippets='http-request,request-headers,http-response']
+operation::normal-jwt-test/pass_-jwt[snippets='http-request,request-headers,http-response']
 
 === AccessToken 없이 API 요청
-operation::jwt/access-not-jwt[snippets='http-response']
+operation::jwt-test/access-not-jwt[snippets='http-response']
 
 === 시간 만료된 AccessToken
-operation::jwt/expired-jwt[snippets='http-response']
+operation::jwt-test/expired-jwt[snippets='http-response']
 
 === 비 정상적인 AccessToken
-operation::jwt/illegal-jwt[snippets='http-response']
+operation::jwt-test/illegal-jwt[snippets='http-response']
 
 === AccessToken 재요청
-수정중
+operation::re-request-jwt/re-request-access-token-success[snippets='http-request,http-response,response-fields']
+
+=== DB에 RefreshToken이 일치하지 않은 경우
+operation::re-request-jwt/re-request-access-token-failure[snippets='http-response']

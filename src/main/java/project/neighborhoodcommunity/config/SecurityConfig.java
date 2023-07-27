@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .and()
 
                 .authorizeHttpRequests()
-                .requestMatchers("/post/**","/jwt").authenticated()
+                .requestMatchers("/jwt").authenticated()
                 .anyRequest().permitAll()
                 .and()
 

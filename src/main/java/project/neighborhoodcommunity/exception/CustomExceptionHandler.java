@@ -21,4 +21,10 @@ public class CustomExceptionHandler {
     public CommonResponse<CommonResponseStatus> InvalidJwtTokenExceptionHandle(InvalidJwtTokenException exception) {
         return new CommonResponse<>(exception.getStatus());
     }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundJwtToken.class)
+    public CommonResponse<CommonResponseStatus> NotFoundJwtTokenExceptionHandle(NotFoundJwtToken exception) {
+        return new CommonResponse<>(exception.getStatus());
+    }
 }

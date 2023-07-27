@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import project.constant.CommonResponseStatus;
+import project.neighborhoodcommunity.exception.NotFoundJwtToken;
 import project.neighborhoodcommunity.exception.UnsuitableJwtException;
 import project.neighborhoodcommunity.dto.RequestSignUpDto;
 import project.neighborhoodcommunity.entity.User;
@@ -35,7 +37,7 @@ public class UserService {
         String kakaoId = jwtTokenProvider.extractIDs(token);
 
         if (!userRepository.existsByKakaoidAndRefreshToken(kakaoId, token))
-            throw new UnsuitableJwtException();
+            throw new NotFoundJwtToken(CommonResponseStatus.NOT_FOUND);
         return kakaoId;
     }
 }

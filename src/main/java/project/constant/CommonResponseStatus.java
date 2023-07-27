@@ -10,7 +10,8 @@ public enum CommonResponseStatus {
     /* ------ 400번대 error ------- */
     EXPIRED_JWT(HttpStatus.UNAUTHORIZED.value(), "만료된 JWT 토큰입니다."),
     UNSUITABLE_JWT(HttpStatus.UNAUTHORIZED.value(), "잘못된 JWT 입니다."),
-    UNAUTHORIZED(HttpStatus.UNAUTHORIZED.value(), "JWT 토큰이 없습니다.");
+    UNAUTHORIZED(HttpStatus.UNAUTHORIZED.value(), "JWT 토큰이 없습니다."),
+    NOT_FOUND(HttpStatus.NOT_FOUND.value(), "값을 찾을 수 없습니다.");
 
     private final String message;
     private final int code;

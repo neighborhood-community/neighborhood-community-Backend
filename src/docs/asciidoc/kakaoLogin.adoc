@@ -1,5 +1,3 @@
 === 카카오 Oauth2
 
-operation::kakao-login/oauth/kakao-login-success[snippets='query-parameters,http-request']
-
-operation::kakao-login/oauth/kakao-login-success[snippets='http-response,response-fields']
+operation::kakao-login-test/kakao-login-success[snippets='query-parameters,http-request,http-response,response-fields']
