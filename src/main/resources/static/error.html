@@ -449,10 +449,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
 </colgroup>
 <thead>
 <tr>
@@ -485,7 +485,67 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-top"><p class="tableblock">JWT103</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DB에 RefreshToken이 일치하지 않음</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NOT_FOUND</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not Found</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Post ErrorCode<br></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">code</th>
+<th class="tableblock halign-left valign-top">설명 및 메시지</th>
+<th class="tableblock halign-left valign-top">Http 상태코드</th>
+<th class="tableblock halign-left valign-top">status 설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST100</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글을 찾을 수 없음</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not Found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST101</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">글쓴이만 접근 가능</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">403</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Forbidden</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>User ErrorCode<br></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">code</th>
+<th class="tableblock halign-left valign-top">설명 및 메시지</th>
+<th class="tableblock halign-left valign-top">Http 상태코드</th>
+<th class="tableblock halign-left valign-top">status 설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USER100</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원이 없습니다.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not Found</p></td>
 </tr>
 </tbody>
 </table>
@@ -493,7 +553,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-07-28 11:14:30 +0900
+Last updated 2023-07-29 03:44:32 +0900
 </div>
 </div>
 </body>

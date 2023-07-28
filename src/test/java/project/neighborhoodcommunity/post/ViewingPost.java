@@ -73,7 +73,7 @@ public class ViewingPost {
                                 fieldWithPath("category").description("카테고리"),
                                 fieldWithPath("region").description("지역"),
                                 fieldWithPath("content").description("게시글 내용"),
-                                fieldWithPath("tags").description("태그 (,)로 구분"),
+                                fieldWithPath("tags").description("태그 (, )로 구분"),
                                 fieldWithPath("nickname").description("글쓴이")
                         )
                 ));

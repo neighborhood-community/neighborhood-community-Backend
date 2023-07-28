@@ -23,8 +23,14 @@ public class CustomExceptionHandler {
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(NotFoundJwtToken.class)
-    public CommonResponse<CommonResponseStatus> NotFoundJwtTokenExceptionHandle(NotFoundJwtToken exception) {
+    @ExceptionHandler(NotFoundException.class)
+    public CommonResponse<CommonResponseStatus> NotFoundExceptionHandle(NotFoundException exception) {
+        return new CommonResponse<>(exception.getStatus());
+    }
+
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(AccessDeniedException.class)
+    public CommonResponse<CommonResponseStatus> AccessDeniedExceptionHandle(AccessDeniedException exception) {
         return new CommonResponse<>(exception.getStatus());
     }
 }

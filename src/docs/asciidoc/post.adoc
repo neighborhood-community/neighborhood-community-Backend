@@ -1,5 +1,12 @@
 = Post
 
-=== 게시글 조회
-
+=== 카테고리별 게시글 조회
 operation::viewing-post/search-post[snippets='http-request,query-parameters,http-response,response-fields']
+=== 내가 쓴 게시글 조회
+operation::my-post/search-my-post-all[snippets='http-request,request-headers,query-parameters,http-response,response-fields']
+=== 게시글 추가
+operation::my-post/insert-post[snippets='http-request,request-headers,request-fields,http-response']
+=== 게시글 삭제
+operation::my-post/delete-my-post[snippets='http-request,request-headers,query-parameters,http-response,response-fields']
+=== 게시글 수정
+operation::my-post/update-post[snippets='http-request,request-headers,request-fields,http-response']

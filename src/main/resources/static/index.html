@@ -459,7 +459,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_post">Post</a>
 <ul class="sectlevel2">
-<li><a href="#_게시글_조회">게시글 조회</a></li>
+<li><a href="#_카테고리별_게시글_조회">카테고리별 게시글 조회</a></li>
+<li><a href="#_내가_쓴_게시글_조회">내가 쓴 게시글 조회</a></li>
+<li><a href="#_게시글_추가">게시글 추가</a></li>
+<li><a href="#_게시글_삭제">게시글 삭제</a></li>
+<li><a href="#_게시글_수정">게시글 수정</a></li>
 </ul>
 </li>
 <li><a href="#_errorcode_document">ErrorCode Document</a></li>
@@ -574,7 +578,7 @@ RefreshToken 유효시간 : 2주
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /jwt HTTP/1.1
 Host: 43.202.6.185:8080
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTY3IiwiZXhwIjoxNjkwNTEzMTQyfQ.rT5yQFuGhfdtb9WwuvKWECBI3oIQ5A8_pEqbcef7hilvao37cj4OHcsOnGOd0qqaucreuQ-KPWrqocIbpWUlmg</code></pre>
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTY3IiwiZXhwIjoxNjkwNTcyMjU4fQ.OknYpxAzxUEym85p3HRBMNorITV3T9nOJ0G9ZqQiXn7QrHdvGm7oAT_wkYj-MAETrVrxmztGcya4wI0UruTBPg</code></pre>
 </div>
 </div>
 </div>
@@ -633,7 +637,7 @@ Host: 43.202.6.185:8080
 Content-Length: 183
 
 {
-  "refreshToken" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkxNjY3OTE5fQ.kOlSMhPqefnUJ_fsnRWmV4CWPZGir0Z1HgIcysYGLFapqxj69Ia_9zg6KleiwNcV2kSw8DeFTweUM82FuEAyQg"
+  "refreshToken" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkxNzc4ODg5fQ.Mowk1Ej_Udnfb66myDGwWcUgfe0Y5H_eekL5AO7Csl7B-YXlJlensvMr16OCSeKPrZWYoo4ySBuBzK8meHeBIQ"
 }</code></pre>
 </div>
 </div>
@@ -674,7 +678,7 @@ Content-Length: 269
   "code" : "200",
   "message" : "요청에 성공하였습니다.",
   "data" : {
-    "accessToken" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNTEzMTQyfQ.OmSROo7J_UrigFBN9et47iQfcrPtMCXKbGYp1UB-R_-0-MVEexyXuajvRWrfqFGPbY_3x0yx8qvwy3VgthFXcg"
+    "accessToken" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNTcyMjU5fQ.xmUju09ESwWzLY0cccC_jJRQQVtBNWn4h0x1jb6X70bX3mFPnX5Uw0Opa0gauCdy62h8r8_lcSB6FOZL6sR23g"
   }
 }</code></pre>
 </div>
@@ -717,9 +721,9 @@ Content-Length: 269
 </div>
 <h1 id="_post" class="sect0"><a class="link" href="#_post">Post</a></h1>
 <div class="sect2">
-<h3 id="_게시글_조회"><a class="link" href="#_게시글_조회">게시글 조회</a></h3>
+<h3 id="_카테고리별_게시글_조회"><a class="link" href="#_카테고리별_게시글_조회">카테고리별 게시글 조회</a></h3>
 <div class="sect3">
-<h4 id="_게시글_조회_http_request"><a class="link" href="#_게시글_조회_http_request">HTTP request</a></h4>
+<h4 id="_카테고리별_게시글_조회_http_request"><a class="link" href="#_카테고리별_게시글_조회_http_request">HTTP request</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /post?category=all&amp;page=1 HTTP/1.1
@@ -728,7 +732,7 @@ Host: 43.202.6.185:8080</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_게시글_조회_query_parameters"><a class="link" href="#_게시글_조회_query_parameters">Query parameters</a></h4>
+<h4 id="_카테고리별_게시글_조회_query_parameters"><a class="link" href="#_카테고리별_게시글_조회_query_parameters">Query parameters</a></h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -757,31 +761,24 @@ Host: 43.202.6.185:8080</code></pre>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_게시글_조회_http_response"><a class="link" href="#_게시글_조회_http_response">HTTP response</a></h4>
+<h4 id="_카테고리별_게시글_조회_http_response"><a class="link" href="#_카테고리별_게시글_조회_http_response">HTTP response</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 2132
+Content-Length: 1916
 
 {
   "code" : "200",
   "message" : "요청에 성공하였습니다.",
   "data" : {
-    "totalPages" : 2,
+    "totalPages" : 1,
     "posts" : [ {
-      "id" : 1,
-      "category" : "pet",
-      "region" : "서울시",
-      "content" : "저희 강아지랑 함께 산책하실 분 있으시나요?",
-      "tags" : "강아지산책, 뽀삐",
-      "nickname" : "박정민"
-    }, {
       "id" : 2,
       "category" : "movie",
-      "region" : "경기도",
-      "content" : "인시디어스 시리즈 너무 재미있어요 ㅎㅎ",
-      "tags" : "인시디어스, 재미있다",
+      "region" : "서울시",
+      "content" : "testtest",
+      "tags" : "test1",
       "nickname" : "박정민"
     }, {
       "id" : 3,
@@ -798,32 +795,39 @@ Content-Length: 2132
       "tags" : "헬스, 근육남",
       "nickname" : "박정민"
     }, {
-      "id" : 5,
-      "category" : "pet",
-      "region" : "충청남도",
-      "content" : "강아지 키우고 싶은데 부모님이 반대를 해요 어떻게 하면 동의를 얻을 수 있을까요?",
-      "tags" : "키우고싶어요, 강아지",
-      "nickname" : "박정민"
-    }, {
       "id" : 6,
       "category" : "movie",
       "region" : "강원도",
       "content" : "넷플릭스 재미있는 영화 추천 해주세요 너무 흔한 영화는 말고요",
       "tags" : "넷플릭스, 추천",
-      "nickname" : "박정민"
+      "nickname" : "최선재"
     }, {
       "id" : 7,
       "category" : "running",
       "region" : "경상남도",
       "content" : "저랑 같이 매일 아침마다 런닝 하실분 계신가요?",
       "tags" : "런닝, 매일아침",
-      "nickname" : "박정민"
+      "nickname" : "최선재"
     }, {
       "id" : 8,
       "category" : "exercise",
       "region" : "전라북도",
       "content" : "필라테스 좋은 곳 어디인가요? 추천 해주세요",
       "tags" : "필라테스",
+      "nickname" : "최선재"
+    }, {
+      "id" : 9,
+      "category" : "exercise",
+      "region" : "서울시",
+      "content" : "요가를 매일 아침마다 하니 몸이 유연해졌어요",
+      "tags" : "요가",
+      "nickname" : "박정민"
+    }, {
+      "id" : 18,
+      "category" : "movie",
+      "region" : "ㅇㅇ",
+      "content" : "test",
+      "tags" : "test",
       "nickname" : "박정민"
     } ]
   }
@@ -832,7 +836,7 @@ Content-Length: 2132
 </div>
 </div>
 <div class="sect3">
-<h4 id="_게시글_조회_response_fields"><a class="link" href="#_게시글_조회_response_fields">Response fields</a></h4>
+<h4 id="_카테고리별_게시글_조회_response_fields"><a class="link" href="#_카테고리별_게시글_조회_response_fields">Response fields</a></h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -890,7 +894,7 @@ Content-Length: 2132
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].tags</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">태그 (,)로 구분</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">태그 (, )로 구분</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].nickname</code></p></td>
@@ -901,6 +905,520 @@ Content-Length: 2132
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_내가_쓴_게시글_조회"><a class="link" href="#_내가_쓴_게시글_조회">내가 쓴 게시글 조회</a></h3>
+<div class="sect3">
+<h4 id="_내가_쓴_게시글_조회_http_request"><a class="link" href="#_내가_쓴_게시글_조회_http_request">HTTP request</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /post/my?page=1 HTTP/1.1
+Host: 43.202.6.185:8080
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNTcyMjU5fQ.xmUju09ESwWzLY0cccC_jJRQQVtBNWn4h0x1jb6X70bX3mFPnX5Uw0Opa0gauCdy62h8r8_lcSB6FOZL6sR23g</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_내가_쓴_게시글_조회_request_headers"><a class="link" href="#_내가_쓴_게시글_조회_request_headers">Request headers</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bearer {AccessToken}</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_내가_쓴_게시글_조회_query_parameters"><a class="link" href="#_내가_쓴_게시글_조회_query_parameters">Query parameters</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>page</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1페이지당 8개의 게시글</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_내가_쓴_게시글_조회_http_response"><a class="link" href="#_내가_쓴_게시글_조회_http_response">HTTP response</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 0
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: SAMEORIGIN
+Content-Length: 1178
+
+{
+  "code" : "200",
+  "message" : "요청에 성공하였습니다.",
+  "data" : {
+    "totalPages" : 1,
+    "posts" : [ {
+      "id" : 2,
+      "category" : "movie",
+      "region" : "서울시",
+      "content" : "testtest",
+      "tags" : "test1",
+      "nickname" : "박정민"
+    }, {
+      "id" : 3,
+      "category" : "running",
+      "region" : "서울시",
+      "content" : "오늘 여의도 한강공원 같이 런닝하실분 있으신가요?",
+      "tags" : "런닝, 함께해요",
+      "nickname" : "박정민"
+    }, {
+      "id" : 4,
+      "category" : "exercise",
+      "region" : "충청북도",
+      "content" : "6개월차부터 몸에 변화가 일어나네요 운동 재미있어요",
+      "tags" : "헬스, 근육남",
+      "nickname" : "박정민"
+    }, {
+      "id" : 9,
+      "category" : "exercise",
+      "region" : "서울시",
+      "content" : "요가를 매일 아침마다 하니 몸이 유연해졌어요",
+      "tags" : "요가",
+      "nickname" : "박정민"
+    }, {
+      "id" : 18,
+      "category" : "movie",
+      "region" : "ㅇㅇ",
+      "content" : "test",
+      "tags" : "test",
+      "nickname" : "박정민"
+    } ]
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_내가_쓴_게시글_조회_response_fields"><a class="link" href="#_내가_쓴_게시글_조회_response_fields">Response fields</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>code</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Http 상태코드</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>message</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청에 성공하였습니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.totalPages</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">총 페이지 수</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글 리스트</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글 번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].category</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">카테고리</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].region</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">지역</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].tags</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">태그 (, )로 구분</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].nickname</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">글쓴이</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_게시글_추가"><a class="link" href="#_게시글_추가">게시글 추가</a></h3>
+<div class="sect3">
+<h4 id="_게시글_추가_http_request"><a class="link" href="#_게시글_추가_http_request">HTTP request</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /post/i HTTP/1.1
+Content-Type: application/json
+Host: 43.202.6.185:8080
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNTcyMjU5fQ.xmUju09ESwWzLY0cccC_jJRQQVtBNWn4h0x1jb6X70bX3mFPnX5Uw0Opa0gauCdy62h8r8_lcSB6FOZL6sR23g
+Content-Length: 98
+
+{
+  "category" : "movie",
+  "region" : "서울시",
+  "content" : "testtest",
+  "tags" : "test1"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_게시글_추가_request_headers"><a class="link" href="#_게시글_추가_request_headers">Request headers</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bearer {AccessToken}</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_게시글_추가_request_fields"><a class="link" href="#_게시글_추가_request_fields">Request fields</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>category</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">카테고리</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">글 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>region</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">지역</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tags</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">태크 (, )로 구분</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_게시글_추가_http_response"><a class="link" href="#_게시글_추가_http_response">HTTP response</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 0
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: SAMEORIGIN
+Content-Length: 70
+
+{
+  "code" : "200",
+  "message" : "요청에 성공하였습니다."
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_게시글_삭제"><a class="link" href="#_게시글_삭제">게시글 삭제</a></h3>
+<div class="sect3">
+<h4 id="_게시글_삭제_http_request"><a class="link" href="#_게시글_삭제_http_request">HTTP request</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">DELETE /post/d?id=4 HTTP/1.1
+Host: 43.202.6.185:8080
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNTcyMjU5fQ.xmUju09ESwWzLY0cccC_jJRQQVtBNWn4h0x1jb6X70bX3mFPnX5Uw0Opa0gauCdy62h8r8_lcSB6FOZL6sR23g
+Content-Type: application/x-www-form-urlencoded</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_게시글_삭제_request_headers"><a class="link" href="#_게시글_삭제_request_headers">Request headers</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bearer {AccessToken}</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_게시글_삭제_query_parameters"><a class="link" href="#_게시글_삭제_query_parameters">Query parameters</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글 번호</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_게시글_삭제_http_response"><a class="link" href="#_게시글_삭제_http_response">HTTP response</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 0
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: SAMEORIGIN
+Content-Length: 70
+
+{
+  "code" : "200",
+  "message" : "요청에 성공하였습니다."
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_게시글_삭제_response_fields"><a class="link" href="#_게시글_삭제_response_fields">Response fields</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>code</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Http 상태 코드</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>message</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">상태 메시지</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_게시글_수정"><a class="link" href="#_게시글_수정">게시글 수정</a></h3>
+<div class="sect3">
+<h4 id="_게시글_수정_http_request"><a class="link" href="#_게시글_수정_http_request">HTTP request</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /post/u HTTP/1.1
+Content-Type: application/json
+Host: 43.202.6.185:8080
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNTcyMjU5fQ.xmUju09ESwWzLY0cccC_jJRQQVtBNWn4h0x1jb6X70bX3mFPnX5Uw0Opa0gauCdy62h8r8_lcSB6FOZL6sR23g
+Content-Length: 110
+
+{
+  "id" : 2,
+  "category" : "movie",
+  "region" : "서울시",
+  "content" : "testtest",
+  "tags" : "test1"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_게시글_수정_request_headers"><a class="link" href="#_게시글_수정_request_headers">Request headers</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bearer {AccessToken}</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_게시글_수정_request_fields"><a class="link" href="#_게시글_수정_request_fields">Request fields</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글 번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>category</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">카테고리</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>region</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">지역</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">글 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tags</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">태크 (, )로 구분</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_게시글_수정_http_response"><a class="link" href="#_게시글_수정_http_response">HTTP response</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 0
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: SAMEORIGIN
+Content-Length: 70
+
+{
+  "code" : "200",
+  "message" : "요청에 성공하였습니다."
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
 <h1 id="_errorcode_document" class="sect0"><a class="link" href="#_errorcode_document">ErrorCode Document</a></h1>
 <div class="openblock partintro">
 <div class="content">
@@ -909,10 +1427,10 @@ Content-Length: 2132
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
 </colgroup>
 <thead>
 <tr>
@@ -945,7 +1463,67 @@ Content-Length: 2132
 <td class="tableblock halign-left valign-top"><p class="tableblock">JWT103</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DB에 RefreshToken이 일치하지 않음</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NOT_FOUND</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not Found</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Post ErrorCode<br></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">code</th>
+<th class="tableblock halign-left valign-top">설명 및 메시지</th>
+<th class="tableblock halign-left valign-top">Http 상태코드</th>
+<th class="tableblock halign-left valign-top">status 설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST100</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글을 찾을 수 없음</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not Found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST101</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">글쓴이만 접근 가능</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">403</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Forbidden</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>User ErrorCode<br></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">code</th>
+<th class="tableblock halign-left valign-top">설명 및 메시지</th>
+<th class="tableblock halign-left valign-top">Http 상태코드</th>
+<th class="tableblock halign-left valign-top">status 설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USER100</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원이 없습니다.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not Found</p></td>
 </tr>
 </tbody>
 </table>
@@ -955,7 +1533,7 @@ Content-Length: 2132
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-07-28 11:14:56 +0900
+Last updated 2023-07-28 11:51:48 +0900
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

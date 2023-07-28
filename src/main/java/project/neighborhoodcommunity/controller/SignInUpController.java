@@ -26,7 +26,6 @@ public class SignInUpController {
     private final UserService userService;
     private final JwtTokenService jwtTokenService;
 
-    //https://kauth.kakao.com/oauth/authorize?client_id=26e821a2d76d661a073c984780a249f1&redirect_uri=http://localhost:5173/verify&response_type=code
     @GetMapping("/kakao")
     @ResponseBody
     public ResponseEntity<?> kakaoLogin(String code) {

@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PostDto {
+public class ResponsePostDto {
 
     private int totalPages;
     private List<Posts> posts;
@@ -25,7 +25,7 @@ public class PostDto {
         private String tags;
         private String nickname;
 
-        public Posts(project.neighborhoodcommunity.entity.Post post, String nickname) {
+        public Posts(final project.neighborhoodcommunity.entity.Post post, final String nickname) {
             this.id = post.getId();
             this.category = post.getCategory();
             this.region = post.getRegion();
@@ -35,7 +35,7 @@ public class PostDto {
         }
     }
 
-    public PostDto(int totalPages, List<PostDto.Posts> post) {
+    public ResponsePostDto(final int totalPages, final List<ResponsePostDto.Posts> post) {
         this.totalPages = totalPages;
         this.posts = post;
     }

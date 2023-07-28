@@ -6,10 +6,10 @@ import project.constant.CommonResponseStatus;
 
 @Getter
 @Setter
-public class NotFoundJwtToken extends RuntimeException {
+public class NotFoundException extends RuntimeException {
     private CommonResponseStatus status;
 
-    public NotFoundJwtToken(CommonResponseStatus status) {
+    public NotFoundException(CommonResponseStatus status) {
         super(status.getMessage());
         this.status = status;
     }
