@@ -1,0 +1,12 @@
+= ErrorCode Document
+
+JWT ErrorCode +
+
+|===
+| code | 설명 및 메시지 | Http 상태코드 | status 설명
+
+| JWT100 | 만료된 JWT | 401 | Unauthorized
+| JWT101 | 잘못된 JWT | 401 | Unauthorized
+| JWT102 | AccessToken 없이 API 요청 | 401 | Unauthorized
+| JWT103 | DB에 RefreshToken이 일치하지 않음 | 404 | NOT_FOUND
+|===

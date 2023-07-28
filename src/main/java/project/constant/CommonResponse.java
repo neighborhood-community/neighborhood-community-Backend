@@ -8,14 +8,14 @@ import lombok.Getter;
 @AllArgsConstructor
 public class CommonResponse<T> {
 
-    private final int code;
+    private final String code;
     private final String message;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
 
     public CommonResponse() {
-        this.code = 200;
+        this.code = "200";
         this.message = "요청에 성공하였습니다.";
     }
 

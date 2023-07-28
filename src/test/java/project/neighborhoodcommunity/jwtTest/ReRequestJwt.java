@@ -91,6 +91,9 @@ public class ReRequestJwt {
                         .content(objectMapper.writeValueAsString(tokenDto)))
                 .andExpect(status().isOk())
                 .andDo(restDocs.document(
+                        requestFields(
+                                fieldWithPath("refreshToken").description("refreshToken")
+                        ),
                         responseFields(
                                 fieldWithPath("code").description("Http 상태 코드"),
                                 fieldWithPath("message").description("상태 메시지"),

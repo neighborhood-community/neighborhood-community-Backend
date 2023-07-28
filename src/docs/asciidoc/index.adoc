@@ -8,3 +8,4 @@
 include::kakaoLogin.adoc[]
 include::jwt.adoc[]
 include::post.adoc[]
+include::error.adoc[]
