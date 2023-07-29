@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import project.neighborhoodcommunity.dto.UserDto;
 
 import java.util.List;
 
@@ -25,4 +26,10 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Post> post;
+
+    public void update(UserDto userDto) {
+        this.email = userDto.getEmail();
+        this.nickname = userDto.getNickname();
+        this.profile_img = userDto.getProfile_img();
+    }
 }

@@ -1,4 +1,4 @@
 = 로그인
 === 카카오 Oauth2
 
-operation::kakao-login-test/kakao-login-success[snippets='query-parameters,http-request,http-response,response-fields']
+operation::kakao-login-test/kakao-login-success[snippets='http-request,query-parameters,http-response,response-fields']

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import project.neighborhoodcommunity.entity.Post;
 
 @Getter
 @Setter
@@ -17,4 +18,15 @@ public class RequestPostDto {
     private String region;
     private String content;
     private String tags;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String nickname;
+
+    public RequestPostDto(Post post, String nickname) {
+        this.id = post.getId();
+        this.category = post.getCategory();
+        this.region = post.getRegion();
+        this.content = post.getContent();
+        this.tags = post.getTags();
+        this.nickname = nickname;
+    }
 }

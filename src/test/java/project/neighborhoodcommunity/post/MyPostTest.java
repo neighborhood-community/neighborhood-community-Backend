@@ -37,7 +37,7 @@ import static org.springframework.restdocs.headers.HeaderDocumentation.*;
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 @Transactional
 @Import(RestDocsConfiguration.class)
-public class MyPost {
+public class MyPostTest {
 
     @Autowired private RestDocumentationResultHandler restDocs;
     @Autowired private MockMvc mockMvc;
@@ -57,12 +57,12 @@ public class MyPost {
     }
 
     @Test
-    void searchMyPostAll() throws Exception {
+    void getMyPostAll() throws Exception {
         //Given
         String accessToken = jwtTokenProvider.createToken("2927239559");
 
         //When & Then
-        mockMvc.perform(get("/post/my")
+        mockMvc.perform(get("/posts/my")
                         .header(HttpHeaders.HOST, "43.202.6.185:8080")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
                         .queryParam("page", "1"))
@@ -96,16 +96,15 @@ public class MyPost {
         String accessToken = jwtTokenProvider.createToken("2927239559");
 
         //When & Then
-        mockMvc.perform(delete("/post/d")
+        mockMvc.perform(delete("/post/d/{id}", 4)
                         .header(HttpHeaders.HOST, "43.202.6.185:8080")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
-                        .queryParam("id", "4"))
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken))
                 .andExpect(status().isOk())
                 .andDo(restDocs.document(
                         requestHeaders(
                                 headerWithName(HttpHeaders.AUTHORIZATION).description("Bearer {AccessToken}")
                         ),
-                        queryParameters(
+                        pathParameters(
                                 parameterWithName("id").description("게시글 번호")
                         ),
                         responseFields(
@@ -120,14 +119,13 @@ public class MyPost {
         //Given
         String accessToken = jwtTokenProvider.createToken("2927239559");
         RequestPostDto postDto = new RequestPostDto();
-        postDto.setId(2L);
         postDto.setCategory("movie");
         postDto.setRegion("서울시");
         postDto.setContent("testtest");
         postDto.setTags("test1");
 
         //When & Then
-        mockMvc.perform(patch("/post/u")
+        mockMvc.perform(patch("/post/u/{id}", 2)
                         .header(HttpHeaders.HOST, "43.202.6.185:8080")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -137,8 +135,10 @@ public class MyPost {
                         requestHeaders(
                                 headerWithName(HttpHeaders.AUTHORIZATION).description("Bearer {AccessToken}")
                         ),
+                        pathParameters(
+                                parameterWithName("id").description("게시글 번호")
+                        ),
                         requestFields(
-                                fieldWithPath("id").description("게시글 번호"),
                                 fieldWithPath("category").description("카테고리"),
                                 fieldWithPath("region").description("지역"),
                                 fieldWithPath("content").description("글 내용"),

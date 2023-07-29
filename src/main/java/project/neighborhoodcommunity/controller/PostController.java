@@ -17,7 +17,6 @@ import static org.springframework.http.HttpStatus.OK;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/post")
 public class PostController {
 
     private final PostService postService;
@@ -26,9 +25,9 @@ public class PostController {
      * 게시글 조회 API
      */
 
-    @GetMapping("")
+    @GetMapping("/posts")
     @ResponseBody
-    public ResponseEntity<CommonResponse<ResponsePostDto>> searchPost(String category, int page) {
+    public ResponseEntity<CommonResponse<ResponsePostDto>> getPosts(String category, int page) {
         if(category.equals("all")) {
             ResponsePostDto posts = postService.getAllPost(PageRequest.of(page - 1, 8));
             return new ResponseEntity<>(new CommonResponse<>(posts, SUCCESS), OK);
@@ -38,10 +37,20 @@ public class PostController {
     }
 
     /*
+     * 해당 게시글 조회
+     */
+
+    @GetMapping("/post/{id}")
+    @ResponseBody
+    public ResponseEntity<CommonResponse<RequestPostDto>> viewingPost(@PathVariable Long id) {
+        return new ResponseEntity<>(new CommonResponse<>(postService.getPostById(id), SUCCESS),OK);
+    }
+
+    /*
      * 내가 쓴 게시글 조회 API
      */
 
-    @GetMapping("/my")
+    @GetMapping("/posts/my")
     @ResponseBody
     public ResponseEntity<CommonResponse<ResponsePostDto>> searchMyPost(int page) {
         String kakaoId = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -53,9 +62,9 @@ public class PostController {
      * 게시글 삭제 API
      */
 
-    @DeleteMapping("/d")
+    @DeleteMapping("/post/d/{id}")
     @ResponseBody
-    public ResponseEntity<CommonResponse<CommonResponseStatus>> deleteMyPost(long id) {
+    public ResponseEntity<CommonResponse<CommonResponseStatus>> deleteMyPost(@PathVariable long id) {
         String kakaoId = SecurityContextHolder.getContext().getAuthentication().getName();
         postService.deleteMyPost(kakaoId, id);
         return new ResponseEntity<>(new CommonResponse<>(), OK);
@@ -65,11 +74,14 @@ public class PostController {
      * 게시글 수정 API
      */
 
-    @PatchMapping("/u")
+    @PatchMapping("/post/u/{id}")
     @ResponseBody
-    public ResponseEntity<CommonResponse<CommonResponseStatus>> updatePost(@RequestBody RequestPostDto requestPostDto) {
+    public ResponseEntity<CommonResponse<CommonResponseStatus>> updatePost(
+            @PathVariable Long id,
+            @RequestBody RequestPostDto requestPostDto
+    ) {
         String kakaoId = SecurityContextHolder.getContext().getAuthentication().getName();
-        postService.updatePost(requestPostDto, kakaoId);
+        postService.updatePost(requestPostDto, kakaoId, id);
         return new ResponseEntity<>(new CommonResponse<>(), OK);
     }
 
@@ -77,7 +89,7 @@ public class PostController {
      * 게시글 추가 API
      */
 
-    @PostMapping("/i")
+    @PostMapping("/post/i")
     @ResponseBody
     public ResponseEntity<CommonResponse<CommonResponseStatus>> insertPost(@RequestBody RequestPostDto requestPostDto) {
         String kakaoId = SecurityContextHolder.getContext().getAuthentication().getName();

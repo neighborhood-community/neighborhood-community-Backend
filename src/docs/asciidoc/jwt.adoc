@@ -1,10 +1,11 @@
 = JWT TEST
 
 AccessToken 유효시간 : 30분 +
+
 RefreshToken 유효시간 : 2주
 
 === AccessToken 검증
-operation::normal-jwt-test/pass_-jwt[snippets='http-request,request-headers,http-response']
+operation::jwt-test/pass-jwt[snippets='http-request,request-headers,http-response']
 
 === AccessToken 재발급
-operation::re-request-jwt/re-request-access-token-success[snippets='http-request,request-fields,http-response,response-fields']
+operation::re-request-jwt-test/re-request-access-token-success[snippets='http-request,request-fields,http-response,response-fields']

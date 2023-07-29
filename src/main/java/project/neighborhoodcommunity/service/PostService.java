@@ -13,7 +13,6 @@ import project.neighborhoodcommunity.entity.User;
 import project.neighborhoodcommunity.exception.AccessDeniedException;
 import project.neighborhoodcommunity.exception.NotFoundException;
 import project.neighborhoodcommunity.repository.PostRepository;
-import project.neighborhoodcommunity.repository.UserRepository;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ import java.util.List;
 public class PostService {
 
     private final PostRepository postRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     public ResponsePostDto getAllPost(Pageable pageable) {
         Page<Post> posts = postRepository.findAllWithUser(pageable);
@@ -51,8 +50,7 @@ public class PostService {
     // ----------- search MyPost -------------
 
     public void deleteMyPost(String kakaoId, Long id) {
-        Post post = postRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(CommonResponseStatus.NOT_FOUND_POST));
+        Post post = findById(id);
 
         if (!post.getUser().getKakaoid().equals(kakaoId))
             throw new AccessDeniedException(CommonResponseStatus.UNEQUAL_USER);
@@ -62,21 +60,27 @@ public class PostService {
 
     // ----------- delete Post -------------
 
-    public void updatePost(RequestPostDto requestPostDto, String kakaoId) {
-        Post post = postRepository.findById(requestPostDto.getId())
-                .orElseThrow(() -> new NotFoundException(CommonResponseStatus.NOT_FOUND_POST));
-
-        post.update(requestPostDto, kakaoId);
-        System.out.println();
+    public void updatePost(RequestPostDto requestPostDto, String kakaoId, Long id) {
+        Post post = findById(id);
+        post.update(requestPostDto, kakaoId, id);
         postRepository.save(post);
     }
 
     // ------------ insert Post ------------
     //
     public void insertPost(RequestPostDto requestPostDto, String kakaoId) {
-        User user = userRepository.findByKakaoid(kakaoId)
-                .orElseThrow(() -> new NotFoundException(CommonResponseStatus.NOT_FOUND_USER));
+        User user = userService.findBykakaoId(kakaoId);
         Post post = new Post(requestPostDto, user);
         postRepository.save(post);
+    }
+
+    public RequestPostDto getPostById(Long id) {
+        Post post = findById(id);
+        return new RequestPostDto(post, post.getUser().getNickname());
+    }
+
+    private Post findById(Long id) {
+        return postRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(CommonResponseStatus.NOT_FOUND_POST));
     }
 }

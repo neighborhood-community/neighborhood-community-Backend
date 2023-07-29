@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpHeaders;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
@@ -25,11 +26,9 @@ import project.neighborhoodcommunity.dto.RequestSignUpDto;
 import project.neighborhoodcommunity.entity.User;
 import project.neighborhoodcommunity.service.*;
 
-import java.util.Optional;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -84,13 +83,13 @@ public class KakaoLoginTest {
         // When
         when(kakaoAccessTokenProviderService.getAccessToken(any())).thenReturn("test_access_token");
         when(kakaoUserInfoProviderService.getUserInfo(any())).thenReturn(requestSignUpDto);
-        when(kakaoLoginService.attemptLogin(any())).thenReturn(Optional.of(new User()));
+        when(kakaoLoginService.attemptLogin(any())).thenReturn(new User());
         when(jwtTokenService.createToken(any())).thenReturn(tokenDto);
 
         // Then
-        mockMvc.perform(get("/kakao")
-                        .header("Host", "43.202.6.185:8080")
-                        .param("code", "AuthorizationCode"))
+        mockMvc.perform(post("/kakao")
+                        .header(HttpHeaders.HOST, "43.202.6.185:8080")
+                        .queryParam("code", "Authorization-Code"))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andDo(restDocs.document(
@@ -116,7 +115,7 @@ public class KakaoLoginTest {
         // When
         when(kakaoAccessTokenProviderService.getAccessToken(any())).thenReturn("test_access_token");
         when(kakaoUserInfoProviderService.getUserInfo(any())).thenReturn(requestSignUpDto);
-        when(kakaoLoginService.attemptLogin(any())).thenReturn(Optional.of(new User()));
-        when(userService.join(any())).thenReturn(Optional.of(new User()));
+        when(kakaoLoginService.attemptLogin(any())).thenReturn(new User());
+        when(userService.join(any())).thenReturn(new User());
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDoc
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpHeaders;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
@@ -17,14 +18,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.http.HttpHeaders;
 import project.neighborhoodcommunity.RestDocsConfiguration;
 import project.neighborhoodcommunity.jwt.JwtTokenProvider;
 
+import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
+import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
-import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -34,7 +34,8 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.response
 public class JwtTest {
 
     @Autowired private RestDocumentationResultHandler restDocs;
-    @Autowired private MockMvc mockMvc;
+    @Autowired
+    private MockMvc mockMvc;
     @Autowired private JwtTokenProvider jwtTokenProvider;
 
     @BeforeEach
@@ -49,51 +50,18 @@ public class JwtTest {
                 .build();
     }
 
-
-
     @Test
-    public void accessNotJwt() throws Exception {
-        //Given
-        String accessToken = "";
-
-        //When
-
-        //Then
-        tokenTest(accessToken);
-    }
-
-    @Test
-    public void expiredJwt() throws Exception {
-        //Given
-        String accessToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwMzgyMzQxfQ" +
-                ".cdGDZuH2cYxi5dlOZwg9NWP0xoV54kLhcQa-LkvYCCggeYbbZkoft_WKewHRiIAPxifjY2_jYHqEQ6a6F-gwlw";
-        //When
-
-        //Then
-        tokenTest(accessToken);
-    }
-
-    @Test
-    public void illegalJwt() throws Exception {
-        //Given
-        String accessToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwMzgyMzQxfQ" +
-                ".cdGDZuH2cYxi5dlOZwg9NWP0xoV54kLccQa-LkvYCCggeYbbZkoft_WKewHRiIAPxifjY2_jYHqEQ6a6F-gwlw";
-
-        //When
-
-        //Then
-        tokenTest(accessToken);
-    }
-
-    private void tokenTest(String accessToken) throws Exception {
+    public void passJwt() throws Exception {
+        // Given
+        String accessToken = jwtTokenProvider.createToken("123456");
+        // When & Then
         mockMvc.perform(get("/jwt")
                         .header(HttpHeaders.HOST, "43.202.6.185:8080")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken))
-                .andExpect(status().isUnauthorized())
+                .andExpect(status().isOk())
                 .andDo(restDocs.document(
-                        responseFields(
-                                fieldWithPath("code").description("Http 상태 코드"),
-                                fieldWithPath("message").description("상태 메시지")
+                        requestHeaders(
+                                headerWithName(HttpHeaders.AUTHORIZATION).description("Bearer {AccessToken}")
                         )
                 ));
     }

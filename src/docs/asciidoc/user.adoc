@@ -1,0 +1,5 @@
+= 사용자 정보
+
+=== 정보 가져오기
+operation::my-page-test/get-my-info[snippets='http-request,request-headers,http-response,response-fields']
+=== 정보 수정

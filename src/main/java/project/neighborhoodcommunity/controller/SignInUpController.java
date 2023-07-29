@@ -5,14 +5,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import project.neighborhoodcommunity.dto.TokenDto;
 import project.neighborhoodcommunity.dto.RequestSignUpDto;
 import project.neighborhoodcommunity.entity.User;
+import project.neighborhoodcommunity.exception.NotFoundException;
 import project.neighborhoodcommunity.service.*;
 import project.constant.CommonResponse;
-
-import java.util.Optional;
 
 import static project.constant.CommonResponseStatus.*;
 
@@ -26,17 +27,20 @@ public class SignInUpController {
     private final UserService userService;
     private final JwtTokenService jwtTokenService;
 
-    @GetMapping("/kakao")
+    @PostMapping("/kakao")
     @ResponseBody
     public ResponseEntity<?> kakaoLogin(String code) {
         String accessToken = kakaoAccessTokenProviderService.getAccessToken(code);
         RequestSignUpDto requestSignUpDto = kakaoUserInfoProviderService.getUserInfo(accessToken);
-        Optional<User> result = kakaoLoginService.attemptLogin(requestSignUpDto.getKakaoid());
+        User user;
 
-        if (result.isEmpty())
-            result = userService.join(requestSignUpDto);
+        try {
+            user = kakaoLoginService.attemptLogin(requestSignUpDto.getKakaoid());
+        } catch (NotFoundException e) {
+            user = userService.join(requestSignUpDto);
+        }
 
-        TokenDto tokenDto = jwtTokenService.createToken(result.get());
+        TokenDto tokenDto = jwtTokenService.createToken(user);
         return new ResponseEntity<>(new CommonResponse<>(tokenDto, SUCCESS), HttpStatus.OK);
     }
 

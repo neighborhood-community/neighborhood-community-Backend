@@ -23,10 +23,8 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
-        System.out.println(12);
         CommonResponse<CommonResponseStatus> error = new CommonResponse<>(CommonResponseStatus.UNAUTHORIZED);
         String json = new ObjectMapper().writeValueAsString(error);
         response.getWriter().write(json);
-
     }
 }

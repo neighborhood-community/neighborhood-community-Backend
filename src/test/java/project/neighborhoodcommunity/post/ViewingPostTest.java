@@ -29,7 +29,7 @@ import static org.springframework.restdocs.request.RequestDocumentation.*;
 @AutoConfigureRestDocs
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 @Import(RestDocsConfiguration.class)
-public class ViewingPost {
+public class ViewingPostTest {
 
     @Autowired private RestDocumentationResultHandler restDocs;
     @Autowired private MockMvc mockMvc;
@@ -46,9 +46,9 @@ public class ViewingPost {
     }
 
     @Test
-    void searchPost() throws Exception {
+    void getPosts() throws Exception {
         //When & Then
-        mockMvc.perform(get("/post")
+        mockMvc.perform(get("/posts")
                         .header(HttpHeaders.HOST, "43.202.6.185:8080")
                         .queryParam("category", "all")
                         .queryParam("page", "1"))
@@ -75,6 +75,30 @@ public class ViewingPost {
                                 fieldWithPath("content").description("게시글 내용"),
                                 fieldWithPath("tags").description("태그 (, )로 구분"),
                                 fieldWithPath("nickname").description("글쓴이")
+                        )
+                ));
+    }
+
+    @Test
+    void getOnePost() throws Exception {
+        //When & Then
+        mockMvc.perform(get("/post/{id}", 1)
+                        .header(HttpHeaders.HOST, "43.202.6.185:8080"))
+                .andExpect(status().isOk())
+                .andDo(restDocs.document(
+                        pathParameters(
+                                parameterWithName("id").description("게시글 번호")
+                        ),
+                        responseFields(
+                                fieldWithPath("code").description("Http 상태 코드"),
+                                fieldWithPath("message").description("상태 메시지")
+                        ).andWithPrefix("data.",
+                                fieldWithPath("id").description("게시글 번호"),
+                                fieldWithPath("category").description("카테고리"),
+                                fieldWithPath("content").description("글 내용"),
+                                fieldWithPath("region").description("지역"),
+                                fieldWithPath("tags").description("태크 (, )로 구분"),
+                                fieldWithPath("nickname").description("글쓴이 닉네임")
                         )
                 ));
     }

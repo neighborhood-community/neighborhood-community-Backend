@@ -24,21 +24,22 @@ public class Post {
     @JoinColumn(name = "userId")
     private User user;
 
-    public void update(final RequestPostDto postDto, final String kakaoId) {
-        if(!this.user.getKakaoid().equals(kakaoId))
-            throw new AccessDeniedException(CommonResponseStatus.UNEQUAL_USER);
-
-        this.category = postDto.getCategory();
-        this.region = postDto.getRegion();
-        this.content = postDto.getContent();
-        this.tags = postDto.getTags();
-    }
-
     public Post(RequestPostDto postDto, User user) {
         this.category = postDto.getCategory();
         this.region = postDto.getRegion();
         this.content = postDto.getContent();
         this.tags = postDto.getTags();
         this.user = user;
+    }
+
+    public void update(final RequestPostDto postDto, final String kakaoId, final Long id) {
+        if(!this.user.getKakaoid().equals(kakaoId))
+            throw new AccessDeniedException(CommonResponseStatus.UNEQUAL_USER);
+
+        this.id = id;
+        this.category = postDto.getCategory();
+        this.region = postDto.getRegion();
+        this.content = postDto.getContent();
+        this.tags = postDto.getTags();
     }
 }

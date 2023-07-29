@@ -37,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureRestDocs
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 @Import(RestDocsConfiguration.class)
-public class ReRequestJwt {
+public class ReRequestJwtTest {
 
     @Autowired private RestDocumentationResultHandler restDocs;
     @Autowired private MockMvc mockMvc;

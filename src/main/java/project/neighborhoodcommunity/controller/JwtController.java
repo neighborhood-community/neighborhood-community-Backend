@@ -32,7 +32,6 @@ public class JwtController {
     @GetMapping("/jwt")
     @ResponseBody
     public String TestJwt() {
-        System.out.println(3);
         return "성공";
     }
 }
