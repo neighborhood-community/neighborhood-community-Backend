@@ -47,14 +47,18 @@ public class PostController {
     }
 
     /*
-     * 내가 쓴 게시글 조회 API
+     * 내가 쓴 게시글 카테고리별 조회 API
      */
 
     @GetMapping("/posts/my")
     @ResponseBody
-    public ResponseEntity<CommonResponse<ResponsePostDto>> searchMyPost(int page) {
+    public ResponseEntity<CommonResponse<ResponsePostDto>> searchMyPost(String category, int page) {
         String kakaoId = SecurityContextHolder.getContext().getAuthentication().getName();
-        ResponsePostDto posts = postService.getAllPostByKakaoId(kakaoId, PageRequest.of(page - 1, 8));
+        if(category.equals("all")) {
+            ResponsePostDto posts = postService.getAllPostByKakaoId(kakaoId, PageRequest.of(page - 1, 8));
+            return new ResponseEntity<>(new CommonResponse<>(posts, SUCCESS), OK);
+        }
+        ResponsePostDto posts = postService.getAllPostByKakaoIdAndCategory(kakaoId, category, PageRequest.of(page - 1, 8));
         return new ResponseEntity<>(new CommonResponse<>(posts, SUCCESS), OK);
     }
 

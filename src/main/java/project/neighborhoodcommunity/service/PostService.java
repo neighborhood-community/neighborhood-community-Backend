@@ -3,6 +3,7 @@ package project.neighborhoodcommunity.service;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import project.constant.CommonResponseStatus;
@@ -37,6 +38,11 @@ public class PostService {
 
     public ResponsePostDto getAllPostByKakaoId(String kakaoId, Pageable pageable) {
         Page<Post> posts = postRepository.findByUserKakaoid(kakaoId, pageable);
+        return convertPostsToDto(posts);
+    }
+
+    public ResponsePostDto getAllPostByKakaoIdAndCategory(String kakaoId, String category, Pageable pageable) {
+        Page<Post> posts = postRepository.findAllByUserKakaoidAndCategory(kakaoId, category, pageable);
         return convertPostsToDto(posts);
     }
 

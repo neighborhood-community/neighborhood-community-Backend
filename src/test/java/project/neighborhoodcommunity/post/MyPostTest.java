@@ -65,6 +65,7 @@ public class MyPostTest {
         mockMvc.perform(get("/posts/my")
                         .header(HttpHeaders.HOST, "43.202.6.185:8080")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
+                        .queryParam("category", "all")
                         .queryParam("page", "1"))
                 .andExpect(status().isOk())
                 .andDo(restDocs.document(
@@ -72,6 +73,12 @@ public class MyPostTest {
                                 headerWithName(HttpHeaders.AUTHORIZATION).description("Bearer {AccessToken}")
                         ),
                         queryParameters(
+                                parameterWithName("category").description("""
+                                        모두 : all +
+                                        반려동물 산책 : pet +
+                                        영화 : movie +
+                                        런닝 : running +
+                                        헬스/필라테스/요가 : exercise"""),
                                 parameterWithName("page").description("1페이지당 8개의 게시글")
                         ),
                         responseFields(

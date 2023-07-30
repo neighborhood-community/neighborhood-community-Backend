@@ -445,9 +445,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect2">
-<h3 id="_카테고리별_게시글_조회">카테고리별 게시글 조회</h3>
+<h3 id="_카테고리별_모든_게시글_조회">카테고리별 모든 게시글 조회</h3>
 <div class="sect3">
-<h4 id="_카테고리별_게시글_조회_http_request">HTTP request</h4>
+<h4 id="_카테고리별_모든_게시글_조회_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /posts?category=all&amp;page=1 HTTP/1.1
@@ -456,7 +456,7 @@ Host: 43.202.6.185:8080</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_카테고리별_게시글_조회_query_parameters">Query parameters</h4>
+<h4 id="_카테고리별_모든_게시글_조회_query_parameters">Query parameters</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -485,7 +485,7 @@ Host: 43.202.6.185:8080</code></pre>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_카테고리별_게시글_조회_http_response">HTTP response</h4>
+<h4 id="_카테고리별_모든_게시글_조회_http_response">HTTP response</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
@@ -560,7 +560,7 @@ Content-Length: 2140
 </div>
 </div>
 <div class="sect3">
-<h4 id="_카테고리별_게시글_조회_response_fields">Response fields</h4>
+<h4 id="_카테고리별_모든_게시글_조회_response_fields">Response fields</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -746,19 +746,19 @@ Content-Length: 319
 </div>
 </div>
 <div class="sect2">
-<h3 id="_내가_쓴_게시글_조회">내가 쓴 게시글 조회</h3>
+<h3 id="_내가_쓴_게시글_카테고리별_조회">내가 쓴 게시글 카테고리별 조회</h3>
 <div class="sect3">
-<h4 id="_내가_쓴_게시글_조회_http_request">HTTP request</h4>
+<h4 id="_내가_쓴_게시글_카테고리별_조회_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /posts/my?page=1 HTTP/1.1
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /posts/my?category=all&amp;page=1 HTTP/1.1
 Host: 43.202.6.185:8080
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNjQxMDA3fQ.t4i0i3zR9d1ZlX7sfJec9DvJS3SmVLnYLvYQJ1Tt6s12hzTmKDqSSF_zRk2wJj9_t0f8sfVCZJFuP9YbXmf_wA</code></pre>
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNjg2Mzc0fQ.zHfVt58C-7dzhKaWVb4OFpNQJNxoko15LZUagED5YN6vp1qIj0Ixfu1I4mGnFrPn5hmBOUNjqDu5wrOrIjfilA</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_내가_쓴_게시글_조회_request_headers">Request headers</h4>
+<h4 id="_내가_쓴_게시글_카테고리별_조회_request_headers">Request headers</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -779,7 +779,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxN
 </table>
 </div>
 <div class="sect3">
-<h4 id="_내가_쓴_게시글_조회_query_parameters">Query parameters</h4>
+<h4 id="_내가_쓴_게시글_카테고리별_조회_query_parameters">Query parameters</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -793,6 +793,14 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxN
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>category</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">모두 : all<br>
+반려동물 산책 : pet<br>
+영화 : movie<br>
+런닝 : running<br>
+헬스/필라테스/요가 : exercise</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>page</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1페이지당 8개의 게시글</p></td>
 </tr>
@@ -800,7 +808,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxN
 </table>
 </div>
 <div class="sect3">
-<h4 id="_내가_쓴_게시글_조회_http_response">HTTP response</h4>
+<h4 id="_내가_쓴_게시글_카테고리별_조회_http_response">HTTP response</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
@@ -863,7 +871,7 @@ Content-Length: 1376
 </div>
 </div>
 <div class="sect3">
-<h4 id="_내가_쓴_게시글_조회_response_fields">Response fields</h4>
+<h4 id="_내가_쓴_게시글_카테고리별_조회_response_fields">Response fields</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -941,7 +949,7 @@ Content-Length: 1376
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">POST /post/i HTTP/1.1
 Content-Type: application/json
 Host: 43.202.6.185:8080
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNjQxMDA4fQ.uBcNJzihuXtgQyNVJYJjOlDDUjf5vdvSfxwp592lcJOOyMOsMdRUOYjteejvBTISDThZUN00pPjDfvEfoMTnrw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNjg2Mzc0fQ.zHfVt58C-7dzhKaWVb4OFpNQJNxoko15LZUagED5YN6vp1qIj0Ixfu1I4mGnFrPn5hmBOUNjqDu5wrOrIjfilA
 Content-Length: 98
 
 {
@@ -1046,7 +1054,7 @@ Content-Length: 70
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">DELETE /post/d/4 HTTP/1.1
 Host: 43.202.6.185:8080
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNjQxMDA4fQ.uBcNJzihuXtgQyNVJYJjOlDDUjf5vdvSfxwp592lcJOOyMOsMdRUOYjteejvBTISDThZUN00pPjDfvEfoMTnrw</code></pre>
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNjg2Mzc0fQ.zHfVt58C-7dzhKaWVb4OFpNQJNxoko15LZUagED5YN6vp1qIj0Ixfu1I4mGnFrPn5hmBOUNjqDu5wrOrIjfilA</code></pre>
 </div>
 </div>
 </div>
@@ -1156,7 +1164,7 @@ Content-Length: 70
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">PATCH /post/u/2 HTTP/1.1
 Content-Type: application/json
 Host: 43.202.6.185:8080
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNjQxMDA4fQ.uBcNJzihuXtgQyNVJYJjOlDDUjf5vdvSfxwp592lcJOOyMOsMdRUOYjteejvBTISDThZUN00pPjDfvEfoMTnrw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNjg2Mzc0fQ.zHfVt58C-7dzhKaWVb4OFpNQJNxoko15LZUagED5YN6vp1qIj0Ixfu1I4mGnFrPn5hmBOUNjqDu5wrOrIjfilA
 Content-Length: 98
 
 {
@@ -1279,7 +1287,7 @@ Content-Length: 70
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-07-29 21:27:03 +0900
+Last updated 2023-07-30 11:32:28 +0900
 </div>
 </div>
 </body>

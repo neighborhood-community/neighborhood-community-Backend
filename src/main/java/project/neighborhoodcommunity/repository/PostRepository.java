@@ -26,4 +26,9 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     @EntityGraph(attributePaths = {"user"})
     Optional<Post> findById(Long id);
+
+    @EntityGraph(attributePaths = {"user"})
+    @Query("select p from Post p where p.user.kakaoid = :kakaoid And category = :category")
+    Page<Post> findAllByUserKakaoidAndCategory(
+            @Param("kakaoid") String kakaoId, @Param("category") String category, Pageable pageable);
 }
