@@ -2,6 +2,7 @@ package project.neighborhoodcommunity.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -15,7 +16,7 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class KakaoAccessTokenProviderService {
 
-    private final RestTemplate restTemplate;
+    @Autowired private final RestTemplate restTemplate;
 
     public String getAccessToken(String code) {
         JsonNode root = sendAccessTokenRequest(code).getBody();

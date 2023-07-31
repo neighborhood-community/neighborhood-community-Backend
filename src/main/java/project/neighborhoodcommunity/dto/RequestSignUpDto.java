@@ -10,7 +10,7 @@ import lombok.Setter;
 public class RequestSignUpDto {
 
     private String kakaoid;
-    private String email;
+    private String gender;
     private String nickname;
     private String profile_img;
 }

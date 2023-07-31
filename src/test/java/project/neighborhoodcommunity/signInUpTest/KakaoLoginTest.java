@@ -34,13 +34,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@AutoConfigureMockMvc
-@AutoConfigureRestDocs
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 @Import(RestDocsConfiguration.class)
 public class KakaoLoginTest {
     @Autowired private RestDocumentationResultHandler restDocs;
-    @Autowired
     private MockMvc mockMvc;
 
     @MockBean(name = "kakaoAccessTokenProviderService")
@@ -73,7 +70,7 @@ public class KakaoLoginTest {
     public void kakaoLoginSuccess() throws Exception {
         // Given
         RequestSignUpDto requestSignUpDto = new RequestSignUpDto();
-        requestSignUpDto.setEmail("aossuper7@naver.com");
+        requestSignUpDto.setGender("");
         requestSignUpDto.setNickname("박정민");
         requestSignUpDto.setProfile_img("http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg");
         TokenDto tokenDto = new TokenDto(
@@ -108,7 +105,7 @@ public class KakaoLoginTest {
     public void kakaoLoginFailure() throws Exception {
         // Given
         RequestSignUpDto requestSignUpDto = new RequestSignUpDto();
-        requestSignUpDto.setEmail("aossuper7@naver.com");
+        requestSignUpDto.setGender("male");
         requestSignUpDto.setNickname("박정민");
         requestSignUpDto.setProfile_img("http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg");
 

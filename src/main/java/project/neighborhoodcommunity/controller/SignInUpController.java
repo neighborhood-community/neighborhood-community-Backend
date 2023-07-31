@@ -36,6 +36,7 @@ public class SignInUpController {
 
         try {
             user = kakaoLoginService.attemptLogin(requestSignUpDto.getKakaoid());
+            user = userService.updateInfo(user, requestSignUpDto);
         } catch (NotFoundException e) {
             user = userService.join(requestSignUpDto);
         }

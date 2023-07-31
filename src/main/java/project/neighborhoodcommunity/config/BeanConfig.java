@@ -18,14 +18,4 @@ public class BeanConfig {
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
-
-    @Bean
-    public KakaoAccessTokenProviderService kakaoAccessTokenService(RestTemplate restTemplate) {
-        return new KakaoAccessTokenProviderService(restTemplate);
-    }
-
-    @Bean
-    public KakaoUserInfoProviderService kakaoUserInfoProviderService(RestTemplate restTemplate) {
-        return new KakaoUserInfoProviderService(restTemplate);
-    }
 }

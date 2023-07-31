@@ -18,6 +18,7 @@ import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
 import org.springframework.restdocs.mockmvc.RestDocumentationResultHandler;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import project.neighborhoodcommunity.RestDocsConfiguration;
@@ -33,14 +34,12 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@AutoConfigureMockMvc
-@AutoConfigureRestDocs
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 @Import(RestDocsConfiguration.class)
 public class ReRequestJwtTest {
 
     @Autowired private RestDocumentationResultHandler restDocs;
-    @Autowired private MockMvc mockMvc;
+    private MockMvc mockMvc;
     @Autowired private JwtTokenProvider jwtTokenProvider;
     @Autowired private UserRepository userRepository;
     @Autowired private ObjectMapper objectMapper;
@@ -90,6 +89,7 @@ public class ReRequestJwtTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(tokenDto)))
                 .andExpect(status().isOk())
+                .andDo(MockMvcResultHandlers.print())
                 .andDo(restDocs.document(
                         requestFields(
                                 fieldWithPath("refreshToken").description("refreshToken")

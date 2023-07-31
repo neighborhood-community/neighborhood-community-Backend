@@ -58,6 +58,12 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public User updateInfo(User user, RequestSignUpDto requestSignUpDto) {
+        user.update(requestSignUpDto);
+        userRepository.save(user);
+        return user;
+    }
+
     // ------------- 회원 정보 업데이트 ------------
 
     protected User findBykakaoId(String kakaoId) {

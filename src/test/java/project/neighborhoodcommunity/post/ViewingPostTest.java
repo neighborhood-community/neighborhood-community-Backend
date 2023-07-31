@@ -25,14 +25,12 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
 
 @SpringBootTest
-@AutoConfigureMockMvc
-@AutoConfigureRestDocs
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 @Import(RestDocsConfiguration.class)
 public class ViewingPostTest {
 
     @Autowired private RestDocumentationResultHandler restDocs;
-    @Autowired private MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @BeforeEach
     void setUp(

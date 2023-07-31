@@ -11,13 +11,13 @@ import project.neighborhoodcommunity.entity.User;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDto {
-    private String email;
+    private String gender;
     private String nickname;
     private String profile_img;
 
     public UserDto(User user) {
-        this.email = user.getEmail();
-        this.nickname = user.getEmail();
+        this.gender = user.getGender();
+        this.nickname = user.getNickname();
         this.profile_img = user.getProfile_img();
     }
 }

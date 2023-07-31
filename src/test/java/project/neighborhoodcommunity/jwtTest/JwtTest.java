@@ -27,14 +27,11 @@ import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuild
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@AutoConfigureMockMvc
-@AutoConfigureRestDocs
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 @Import(RestDocsConfiguration.class)
 public class JwtTest {
 
     @Autowired private RestDocumentationResultHandler restDocs;
-    @Autowired
     private MockMvc mockMvc;
     @Autowired private JwtTokenProvider jwtTokenProvider;
 

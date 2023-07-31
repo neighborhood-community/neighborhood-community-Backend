@@ -32,15 +32,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 
 @SpringBootTest
-@AutoConfigureMockMvc
-@AutoConfigureRestDocs
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 @Transactional
 @Import(RestDocsConfiguration.class)
 public class MyPageTest {
 
     @Autowired private RestDocumentationResultHandler restDocs;
-    @Autowired private MockMvc mockMvc;
+    private MockMvc mockMvc;
     @Autowired private JwtTokenProvider jwtTokenProvider;
     @Autowired private ObjectMapper objectMapper;
 
@@ -74,7 +72,7 @@ public class MyPageTest {
                                 fieldWithPath("code").description("Http 상태 코드"),
                                 fieldWithPath("message").description("상태 메시지")
                         ).andWithPrefix("data.",
-                                fieldWithPath("email").description("사용자 이메일"),
+                                fieldWithPath("gender").description("사용자 성별"),
                                 fieldWithPath("nickname").description("사용자 닉네임"),
                                 fieldWithPath("profile_img").description("사용자 프로필 이미지"))
                 ));
@@ -85,7 +83,7 @@ public class MyPageTest {
         //Given
         String accessToken = jwtTokenProvider.createToken("2927239559");
         UserDto userDto = new UserDto();
-        userDto.setEmail("aossuper8@naver.com");
+        userDto.setGender("male");
         userDto.setNickname("aossuepr8");
         userDto.setProfile_img("test");
 
@@ -101,7 +99,7 @@ public class MyPageTest {
                                 headerWithName(HttpHeaders.AUTHORIZATION).description("Bearer {AccessToken}")
                         ),
                         requestFields(
-                                fieldWithPath("email").description("사용자 이메일"),
+                                fieldWithPath("gender").description("사용자 성별"),
                                 fieldWithPath("nickname").description("사용자 닉네임"),
                                 fieldWithPath("profile_img").description("사용자 프로필 이미지")
                         )

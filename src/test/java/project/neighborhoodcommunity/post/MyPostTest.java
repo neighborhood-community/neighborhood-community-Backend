@@ -32,15 +32,13 @@ import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.restdocs.headers.HeaderDocumentation.*;
 
 @SpringBootTest
-@AutoConfigureMockMvc
-@AutoConfigureRestDocs
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 @Transactional
 @Import(RestDocsConfiguration.class)
 public class MyPostTest {
 
     @Autowired private RestDocumentationResultHandler restDocs;
-    @Autowired private MockMvc mockMvc;
+    private MockMvc mockMvc;
     @Autowired private JwtTokenProvider jwtTokenProvider;
     @Autowired private ObjectMapper objectMapper;
 

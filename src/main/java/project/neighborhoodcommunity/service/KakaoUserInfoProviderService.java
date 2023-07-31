@@ -2,6 +2,7 @@ package project.neighborhoodcommunity.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -15,7 +16,7 @@ import project.neighborhoodcommunity.dto.RequestSignUpDto;
 @RequiredArgsConstructor
 public class KakaoUserInfoProviderService {
 
-    private final RestTemplate restTemplate;
+    @Autowired private final RestTemplate restTemplate;
 
     public RequestSignUpDto getUserInfo(String accessToken) {
         JsonNode root = sendUserInfoRequest(accessToken).getBody();
@@ -32,7 +33,7 @@ public class KakaoUserInfoProviderService {
     private ResponseEntity<JsonNode> sendUserInfoRequest(String accessToken) {
         return restTemplate.exchange(
                 "https://kapi.kakao.com/v2/user/me",
-                HttpMethod.POST,
+                HttpMethod.GET,
                 createHeaders(accessToken),
                 JsonNode.class
         );
@@ -41,7 +42,9 @@ public class KakaoUserInfoProviderService {
     private RequestSignUpDto extractUserInfo(JsonNode root) {
         RequestSignUpDto requestSignUpDto = new RequestSignUpDto();
         requestSignUpDto.setKakaoid(root.get("id").asText());
-        requestSignUpDto.setEmail(root.get("kakao_account").get("email").asText());
+        JsonNode gender = root.get("kakao_account").get("gender");
+        if (!(gender == null || gender.asText().isEmpty()))
+            requestSignUpDto.setGender(root.get("kakao_account").get("gender").asText());
         requestSignUpDto.setNickname(root.get("properties").get("nickname").asText());
         requestSignUpDto.setProfile_img(root.get("properties").get("profile_image").asText());
         return requestSignUpDto;

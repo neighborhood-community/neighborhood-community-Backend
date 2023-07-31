@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import project.neighborhoodcommunity.dto.RequestSignUpDto;
 import project.neighborhoodcommunity.dto.UserDto;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String kakaoid;
-    private String email;
+    private String gender;
     private String nickname;
     private String profile_img;
     private String refreshToken;
@@ -28,8 +29,14 @@ public class User {
     private List<Post> post;
 
     public void update(UserDto userDto) {
-        this.email = userDto.getEmail();
+        this.gender = userDto.getGender();
         this.nickname = userDto.getNickname();
         this.profile_img = userDto.getProfile_img();
+    }
+
+    public void update(RequestSignUpDto requestSignUpDto) {
+        this.gender = requestSignUpDto.getGender();
+        this.nickname = requestSignUpDto.getNickname();
+        this.profile_img = requestSignUpDto.getProfile_img();
     }
 }
