@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Getter
@@ -24,6 +25,7 @@ public class ResponsePostDto {
         private String content;
         private String tags;
         private String nickname;
+        private String createdAt;
 
         public Posts(final project.neighborhoodcommunity.entity.Post post, final String nickname) {
             this.id = post.getId();
@@ -32,6 +34,7 @@ public class ResponsePostDto {
             this.content = post.getContent();
             this.tags = post.getTags();
             this.nickname = nickname;
+            this.createdAt = post.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         }
     }
 

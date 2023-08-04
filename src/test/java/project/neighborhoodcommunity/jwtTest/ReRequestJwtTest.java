@@ -63,7 +63,7 @@ public class ReRequestJwtTest {
         tokenDto.setRefreshToken(refreshToken);
         //When & Then
         mockMvc.perform(post("/newtoken")
-                        .header(HttpHeaders.HOST, "43.202.6.185:8080")
+                        .header(HttpHeaders.HOST, "43.202.118.132")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(tokenDto)))
                 .andExpect(status().isNotFound())
@@ -85,7 +85,7 @@ public class ReRequestJwtTest {
 
         //When & Then
         mockMvc.perform(post("/newtoken")
-                        .header(HttpHeaders.HOST, "43.202.6.185:8080")
+                        .header(HttpHeaders.HOST, "43.202.118.132")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(tokenDto)))
                 .andExpect(status().isOk())

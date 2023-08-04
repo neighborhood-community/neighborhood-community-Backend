@@ -61,7 +61,7 @@ public class MyPageTest {
 
         //When & Then
         mockMvc.perform(get("/mypage")
-                        .header(HttpHeaders.HOST, "43.202.6.185:8080")
+                        .header(HttpHeaders.HOST, "43.202.118.132")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken))
                 .andExpect(status().isOk())
                 .andDo(restDocs.document(
@@ -89,7 +89,7 @@ public class MyPageTest {
 
         //When & Then
         mockMvc.perform(patch("/mypage/u")
-                        .header(HttpHeaders.HOST, "43.202.6.185:8080")
+                        .header(HttpHeaders.HOST, "43.202.118.132")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(userDto)))

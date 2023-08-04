@@ -486,7 +486,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /kakao?code=Authorization-Code HTTP/1.1
-Host: 43.202.6.185:8080
+Host: 43.202.118.132
 Content-Type: application/x-www-form-urlencoded</code></pre>
 </div>
 </div>
@@ -589,8 +589,8 @@ Content-Length: 476
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /jwt HTTP/1.1
-Host: 43.202.6.185:8080
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTYiLCJleHAiOjE2OTA3ODgxMzZ9.s2QSXS11BH7rnrvG4wDAG7KQRmdyldZefM04mjyo9iv9_9rWzZ4D7Y2xh35LwP1GFy4t73tCzDmf_cb8ORICyw</code></pre>
+Host: 43.202.118.132
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTYiLCJleHAiOjE2OTExMjYzMjl9._oemTuw7vE5I69mEjw5lwWOqDUzysmflOnPuypAr5BXnlb6_Mwi5OVqvhviU92lPpMqQxAjoJOpzoOlr40cg0w</code></pre>
 </div>
 </div>
 </div>
@@ -645,11 +645,11 @@ X-Frame-Options: SAMEORIGIN
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /newtoken HTTP/1.1
 Content-Type: application/json
-Host: 43.202.6.185:8080
+Host: 43.202.118.132
 Content-Length: 183
 
 {
-  "refreshToken" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkxOTk1OTAyfQ.2CWj9Ve7tQUnSfNIVXMBGDrSxGZCsMbguqqFjwwHSyik6T7AC24yStnMdLY-KJVX47kR-mCv-2vGMgI74bTO6w"
+  "refreshToken" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyMzM1NDE2fQ.Gf5tnY4RUnL9pwqZTvyWfXXk64USDYDuoufWSW0VFUpMDfLErXnQfwAf31aI0fjQlBzJEJiPkmKZ9kRYptsOfw"
 }</code></pre>
 </div>
 </div>
@@ -690,7 +690,7 @@ Content-Length: 269
   "code" : "200",
   "message" : "요청에 성공하였습니다.",
   "data" : {
-    "accessToken" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNzg4MTM2fQ.Q_igI-otOHUGmdzmASZvJ9VUNwMJDChtv166GRq0Pho2sw4RCgevYk6SevSvetnkB_S90YkKSCngF4izoHbmvg"
+    "accessToken" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkxMTI2MzI5fQ.LmER4GO26tXCwe9jEMrjYrj1HAOSvmyZgTgzaUE8ZaUVV_eMsRfP1XtC1ndBTG0I4kDEywsexNEqu0dbCdmgDw"
   }
 }</code></pre>
 </div>
@@ -739,7 +739,7 @@ Content-Length: 269
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /posts?category=all&amp;page=1 HTTP/1.1
-Host: 43.202.6.185:8080</code></pre>
+Host: 43.202.118.132</code></pre>
 </div>
 </div>
 </div>
@@ -778,7 +778,7 @@ Host: 43.202.6.185:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 2140
+Content-Length: 2711
 
 {
   "code" : "200",
@@ -789,58 +789,66 @@ Content-Length: 2140
       "id" : 1,
       "category" : "pet",
       "region" : "경기도",
-      "content" : "강아지 카페 어디가 좋은가요? 저희 강아지도 데려가고 싶어요!",
+      "content" : "강아지 카페 어디가 좋은가요? 우리 선재도 데려가고 싶어요!",
       "tags" : "강아지카페",
-      "nickname" : "최선재"
+      "nickname" : "최선재",
+      "createdAt" : "2023-08-01 17:00:01"
     }, {
       "id" : 2,
       "category" : "movie",
       "region" : "서울시",
       "content" : "인시디어스 시리즈 너무 재미있어요 같이 보실분 있나요? 선재랑 같이 봤으면 좋겠는데",
       "tags" : "선재야, 같이보자",
-      "nickname" : "박정민"
+      "nickname" : "박정민",
+      "createdAt" : "2023-08-01 17:00:18"
     }, {
       "id" : 3,
       "category" : "running",
       "region" : "서울시",
-      "content" : "오늘 여의도 한강공원 같이 런닝하실분 있으신가요?",
+      "content" : "오늘 여의도 한강공원 같이 런닝하실분 있으신가요? 선재 같이했으면 좋겠는데",
       "tags" : "런닝, 함께해요",
-      "nickname" : "박정민"
+      "nickname" : "박정민",
+      "createdAt" : "2023-08-01 17:00:21"
     }, {
       "id" : 4,
       "category" : "exercise",
       "region" : "충청북도",
-      "content" : "6개월차부터 몸에 변화가 일어나네요 운동 재미있어요",
+      "content" : "6개월차부터 몸에 변화가 일어나네요 운동 재미있어요 선재가 운동 하라했을때부터 했어야 했어요",
       "tags" : "헬스, 근육남",
-      "nickname" : "박정민"
+      "nickname" : "박정민",
+      "createdAt" : "2023-08-01 17:00:23"
     }, {
       "id" : 5,
       "category" : "pet",
       "region" : "강원도",
-      "content" : "저희 강아지 산책 시켜주실분~ 사람 안물고 애교 많아요",
+      "content" : "저희 강아지 산책 시켜주실분~ 사람 안물고 애교 많아요 선재 같이했으면 좋겠어요",
       "tags" : "산책",
-      "nickname" : "박정민"
+      "nickname" : "박정민",
+      "createdAt" : "2023-08-01 17:00:27"
     }, {
       "id" : 6,
       "category" : "movie",
       "region" : "강원도",
-      "content" : "넷플릭스 재미있는 영화 추천 해주세요 너무 흔한 영화는 말고요",
+      "content" : "넷플릭스 재미있는 영화 추천 해주세요 너무 흔한 영화는 말고요 선재랑 같이볼거에요",
       "tags" : "넷플릭스, 추천",
-      "nickname" : "최선재"
+      "nickname" : "최선재",
+      "createdAt" : "2023-08-01 17:00:31"
     }, {
       "id" : 7,
       "category" : "running",
       "region" : "경상남도",
-      "content" : "저랑 같이 매일 아침마다 런닝 하실분 계신가요?",
+      "content" : "저랑 같이 매일 아침마다 런닝 하실분 계신가요? 선재랑 같이 하고싶어요",
       "tags" : "런닝, 매일아침",
-      "nickname" : "최선재"
+      "nickname" : "최선재",
+      "createdAt" : "2023-08-01 17:00:34"
     }, {
       "id" : 8,
       "category" : "exercise",
       "region" : "전라북도",
-      "content" : "필라테스 좋은 곳 어디인가요? 추천 해주세요",
+      "content" : "필라테스 좋은 곳 어디인가요? 추천 해주세요 선재랑 같이 다닐려고 해요",
       "tags" : "필라테스",
-      "nickname" : "최선재"
+      "nickname" : "최선재",
+      "createdAt" : "2023-08-01 17:00:36"
     } ]
   }
 }</code></pre>
@@ -913,6 +921,11 @@ Content-Length: 2140
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">글쓴이</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">작성 시간</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -924,7 +937,7 @@ Content-Length: 2140
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /post/1 HTTP/1.1
-Host: 43.202.6.185:8080</code></pre>
+Host: 43.202.118.132</code></pre>
 </div>
 </div>
 </div>
@@ -956,7 +969,7 @@ Host: 43.202.6.185:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 319
+Content-Length: 357
 
 {
   "code" : "200",
@@ -965,9 +978,10 @@ Content-Length: 319
     "id" : 1,
     "category" : "pet",
     "region" : "경기도",
-    "content" : "강아지 카페 어디가 좋은가요? 저희 강아지도 데려가고 싶어요!",
+    "content" : "강아지 카페 어디가 좋은가요? 우리 선재도 데려가고 싶어요!",
     "tags" : "강아지카페",
-    "nickname" : "최선재"
+    "nickname" : "최선재",
+    "createdAt" : "2023-08-01 17:00:01"
   }
 }</code></pre>
 </div>
@@ -1029,6 +1043,11 @@ Content-Length: 319
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">글쓴이 닉네임</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">작성 시간</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1040,8 +1059,8 @@ Content-Length: 319
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /posts/my?category=all&amp;page=1 HTTP/1.1
-Host: 43.202.6.185:8080
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNzg4MTM2fQ.Q_igI-otOHUGmdzmASZvJ9VUNwMJDChtv166GRq0Pho2sw4RCgevYk6SevSvetnkB_S90YkKSCngF4izoHbmvg</code></pre>
+Host: 43.202.118.132
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkxMTI2MzMwfQ.FEWAS2bHb-FaOrExkAqNBTxgSUS0gfac4wXIsX3v6uxfXdKzCE42JrTHPWWqidL-njZtdC5c4_wh6dhlhScZnQ</code></pre>
 </div>
 </div>
 </div>
@@ -1110,7 +1129,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: SAMEORIGIN
-Content-Length: 1376
+Content-Length: 1761
 
 {
   "code" : "200",
@@ -1123,35 +1142,40 @@ Content-Length: 1376
       "region" : "서울시",
       "content" : "인시디어스 시리즈 너무 재미있어요 같이 보실분 있나요? 선재랑 같이 봤으면 좋겠는데",
       "tags" : "선재야, 같이보자",
-      "nickname" : "박정민"
+      "nickname" : "박정민",
+      "createdAt" : "2023-08-01 17:00:18"
     }, {
       "id" : 3,
       "category" : "running",
       "region" : "서울시",
-      "content" : "오늘 여의도 한강공원 같이 런닝하실분 있으신가요?",
+      "content" : "오늘 여의도 한강공원 같이 런닝하실분 있으신가요? 선재 같이했으면 좋겠는데",
       "tags" : "런닝, 함께해요",
-      "nickname" : "박정민"
+      "nickname" : "박정민",
+      "createdAt" : "2023-08-01 17:00:21"
     }, {
       "id" : 4,
       "category" : "exercise",
       "region" : "충청북도",
-      "content" : "6개월차부터 몸에 변화가 일어나네요 운동 재미있어요",
+      "content" : "6개월차부터 몸에 변화가 일어나네요 운동 재미있어요 선재가 운동 하라했을때부터 했어야 했어요",
       "tags" : "헬스, 근육남",
-      "nickname" : "박정민"
+      "nickname" : "박정민",
+      "createdAt" : "2023-08-01 17:00:23"
     }, {
       "id" : 5,
       "category" : "pet",
       "region" : "강원도",
-      "content" : "저희 강아지 산책 시켜주실분~ 사람 안물고 애교 많아요",
+      "content" : "저희 강아지 산책 시켜주실분~ 사람 안물고 애교 많아요 선재 같이했으면 좋겠어요",
       "tags" : "산책",
-      "nickname" : "박정민"
+      "nickname" : "박정민",
+      "createdAt" : "2023-08-01 17:00:27"
     }, {
       "id" : 9,
       "category" : "exercise",
       "region" : "서울시",
-      "content" : "요가를 매일 아침마다 하니 몸이 유연해졌어요",
+      "content" : "요가를 매일 아침마다 하니 몸이 유연해졌어요 선재한테 추천해주고 싶어요",
       "tags" : "요가",
-      "nickname" : "박정민"
+      "nickname" : "박정민",
+      "createdAt" : "2023-08-01 17:00:38"
     } ]
   }
 }</code></pre>
@@ -1224,6 +1248,11 @@ Content-Length: 1376
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">글쓴이</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">작성 시간</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1236,8 +1265,8 @@ Content-Length: 1376
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /post/i HTTP/1.1
 Content-Type: application/json
-Host: 43.202.6.185:8080
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNzg4MTM2fQ.Q_igI-otOHUGmdzmASZvJ9VUNwMJDChtv166GRq0Pho2sw4RCgevYk6SevSvetnkB_S90YkKSCngF4izoHbmvg
+Host: 43.202.118.132
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkxMTI2MzMwfQ.FEWAS2bHb-FaOrExkAqNBTxgSUS0gfac4wXIsX3v6uxfXdKzCE42JrTHPWWqidL-njZtdC5c4_wh6dhlhScZnQ
 Content-Length: 98
 
 {
@@ -1341,8 +1370,8 @@ Content-Length: 70
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">DELETE /post/d/4 HTTP/1.1
-Host: 43.202.6.185:8080
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNzg4MTM2fQ.Q_igI-otOHUGmdzmASZvJ9VUNwMJDChtv166GRq0Pho2sw4RCgevYk6SevSvetnkB_S90YkKSCngF4izoHbmvg</code></pre>
+Host: 43.202.118.132
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkxMTI2MzMwfQ.FEWAS2bHb-FaOrExkAqNBTxgSUS0gfac4wXIsX3v6uxfXdKzCE42JrTHPWWqidL-njZtdC5c4_wh6dhlhScZnQ</code></pre>
 </div>
 </div>
 </div>
@@ -1451,8 +1480,8 @@ Content-Length: 70
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /post/u/2 HTTP/1.1
 Content-Type: application/json
-Host: 43.202.6.185:8080
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNzg4MTM2fQ.Q_igI-otOHUGmdzmASZvJ9VUNwMJDChtv166GRq0Pho2sw4RCgevYk6SevSvetnkB_S90YkKSCngF4izoHbmvg
+Host: 43.202.118.132
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkxMTI2MzMwfQ.FEWAS2bHb-FaOrExkAqNBTxgSUS0gfac4wXIsX3v6uxfXdKzCE42JrTHPWWqidL-njZtdC5c4_wh6dhlhScZnQ
 Content-Length: 98
 
 {
@@ -1579,8 +1608,8 @@ Content-Length: 70
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /mypage HTTP/1.1
-Host: 43.202.6.185:8080
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNzg4MTM2fQ.Q_igI-otOHUGmdzmASZvJ9VUNwMJDChtv166GRq0Pho2sw4RCgevYk6SevSvetnkB_S90YkKSCngF4izoHbmvg</code></pre>
+Host: 43.202.118.132
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkxMTI2MzMwfQ.FEWAS2bHb-FaOrExkAqNBTxgSUS0gfac4wXIsX3v6uxfXdKzCE42JrTHPWWqidL-njZtdC5c4_wh6dhlhScZnQ</code></pre>
 </div>
 </div>
 </div>
@@ -1687,8 +1716,8 @@ Content-Length: 246
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /mypage/u HTTP/1.1
 Content-Type: application/json
-Host: 43.202.6.185:8080
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkwNzg4MTM2fQ.Q_igI-otOHUGmdzmASZvJ9VUNwMJDChtv166GRq0Pho2sw4RCgevYk6SevSvetnkB_S90YkKSCngF4izoHbmvg
+Host: 43.202.118.132
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkxMTI2MzMwfQ.FEWAS2bHb-FaOrExkAqNBTxgSUS0gfac4wXIsX3v6uxfXdKzCE42JrTHPWWqidL-njZtdC5c4_wh6dhlhScZnQ
 Content-Length: 77
 
 {

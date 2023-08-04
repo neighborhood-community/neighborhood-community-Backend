@@ -53,7 +53,7 @@ public class JwtTest {
         String accessToken = jwtTokenProvider.createToken("123456");
         // When & Then
         mockMvc.perform(get("/jwt")
-                        .header(HttpHeaders.HOST, "43.202.6.185:8080")
+                        .header(HttpHeaders.HOST, "43.202.118.132")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken))
                 .andExpect(status().isOk())
                 .andDo(restDocs.document(

@@ -3,10 +3,12 @@ package project.neighborhoodcommunity.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import project.constant.CommonResponseStatus;
 import project.neighborhoodcommunity.dto.RequestPostDto;
 import project.neighborhoodcommunity.exception.AccessDeniedException;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -19,6 +21,10 @@ public class Post {
     private String region;
     private String content;
     private String tags;
+
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")

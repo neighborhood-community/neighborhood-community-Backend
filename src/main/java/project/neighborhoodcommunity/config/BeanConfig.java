@@ -4,8 +4,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
-import project.neighborhoodcommunity.service.KakaoAccessTokenProviderService;
-import project.neighborhoodcommunity.service.KakaoUserInfoProviderService;
 
 @Configuration
 public class BeanConfig {

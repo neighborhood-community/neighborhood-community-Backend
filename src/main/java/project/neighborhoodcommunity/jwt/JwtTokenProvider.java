@@ -3,7 +3,6 @@ package project.neighborhoodcommunity.jwt;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import io.jsonwebtoken.security.SecurityException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -13,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 import project.constant.CommonResponseStatus;
+import project.neighborhoodcommunity.exception.ExpiredJwtTokenException;
 import project.neighborhoodcommunity.exception.InvalidJwtTokenException;
 import project.neighborhoodcommunity.exception.UnsuitableJwtException;
 
@@ -51,23 +51,19 @@ public class JwtTokenProvider implements InitializingBean {
     }
 
     public String createToken(String username) {
-        long now = (new Date()).getTime();
-        Date validity = new Date(now + this.tokenValidityInSeconds);
-
-        return Jwts.builder()
-                .setSubject(username)
-                .signWith(secretKey, SignatureAlgorithm.HS512)
-                .setExpiration(validity)
-                .compact();
+        return createJwtToken(username, secretKey, tokenValidityInSeconds);
     }
 
     public String createRefreshToken(String username) {
-        long now = (new Date()).getTime();
-        Date validity = new Date(now + this.refreshTokenValidityInSeconds);
+        return createJwtToken(username, refreshSecretKey, refreshTokenValidityInSeconds);
+    }
 
+    private String createJwtToken(String username, Key key, long validityPeriod) {
+        long now = (new Date()).getTime();
+        Date validity = new Date(now + validityPeriod);
         return Jwts.builder()
                 .setSubject(username)
-                .signWith(refreshSecretKey, SignatureAlgorithm.HS512)
+                .signWith(key, SignatureAlgorithm.HS512)
                 .setExpiration(validity)
                 .compact();
     }
@@ -88,17 +84,11 @@ public class JwtTokenProvider implements InitializingBean {
         try {
             Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token);
             return true;
-        } catch (SecurityException | MalformedJwtException e) {
-            logger.info("잘못된 JWT 서명입니다.");
-            throw new UnsuitableJwtException();
         } catch (ExpiredJwtException e) {
-            logger.info("만료된 JWT 토큰입니다.");
-            throw new ExpiredJwtException(null, null, null);
-        } catch (UnsupportedJwtException e) {
-            logger.info("지원되지 않는 JWT 토큰입니다.");
-            throw new UnsuitableJwtException();
-        } catch (IllegalArgumentException e) {
-            logger.info("JWT 토큰이 잘못되었습니다.");
+            logger.info("Expired JWT token.");
+            throw new ExpiredJwtTokenException(CommonResponseStatus.EXPIRED_JWT);
+        } catch (JwtException | IllegalArgumentException e) {
+            logger.info("Invalid JWT token : " + e.getMessage());
             throw new UnsuitableJwtException();
         }
     }

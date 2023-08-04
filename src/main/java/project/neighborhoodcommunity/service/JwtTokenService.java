@@ -14,16 +14,22 @@ public class JwtTokenService {
     private final JwtTokenProvider jwtTokenProvider;
     private final UserRepository userRepository;
 
-    public TokenDto createToken(User user) {
-        String accessToken = jwtTokenProvider.createToken(user.getKakaoid());
-        String refreshToken = jwtTokenProvider.createRefreshToken(user.getKakaoid());
-        saveRefreshToken(user, refreshToken);
-        return new TokenDto(accessToken, refreshToken);
+    public TokenDto generateTokenForUser(User user, String profileImg) {
+        TokenDto tokens = createTokensForUser(user.getKakaoid());
+        updateUserWithTokensAndProfileImage(user, tokens.getRefreshToken(), profileImg);
+        return tokens;
     }
 
-    private void saveRefreshToken(User user, String refreshToken) {
+    private void updateUserWithTokensAndProfileImage(User user, String refreshToken, String profileImg) {
         user.setRefreshToken(refreshToken);
+        user.setProfile_img(profileImg);
         userRepository.save(user);
+    }
+
+    private TokenDto createTokensForUser(String kakaoId) {
+        String accessToken = jwtTokenProvider.createToken(kakaoId);
+        String refreshToken = jwtTokenProvider.createRefreshToken(kakaoId);
+        return new TokenDto(accessToken, refreshToken);
     }
 
     public String createRefreshToken(String kakaoId) {

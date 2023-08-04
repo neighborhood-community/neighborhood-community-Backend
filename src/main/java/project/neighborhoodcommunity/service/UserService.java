@@ -12,8 +12,6 @@ import project.neighborhoodcommunity.entity.User;
 import project.neighborhoodcommunity.jwt.JwtTokenProvider;
 import project.neighborhoodcommunity.repository.UserRepository;
 
-import java.util.Optional;
-
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -37,7 +35,7 @@ public class UserService {
 
     public String verifyToken(String token) {
         String kakaoId = jwtTokenProvider.extractIDs(token);
-
+        System.out.println(kakaoId);
         if (!userRepository.existsByKakaoidAndRefreshToken(kakaoId, token))
             throw new NotFoundException(CommonResponseStatus.NOT_FOUND_JWT);
         return kakaoId;
@@ -56,12 +54,6 @@ public class UserService {
         User user = findBykakaoId(kakaoId);
         user.update(userDto);
         userRepository.save(user);
-    }
-
-    public User updateInfo(User user, RequestSignUpDto requestSignUpDto) {
-        user.update(requestSignUpDto);
-        userRepository.save(user);
-        return user;
     }
 
     // ------------- 회원 정보 업데이트 ------------

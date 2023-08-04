@@ -47,7 +47,7 @@ public class ViewingPostTest {
     void getPosts() throws Exception {
         //When & Then
         mockMvc.perform(get("/posts")
-                        .header(HttpHeaders.HOST, "43.202.6.185:8080")
+                        .header(HttpHeaders.HOST, "43.202.118.132")
                         .queryParam("category", "all")
                         .queryParam("page", "1"))
                 .andExpect(status().isOk())
@@ -72,7 +72,8 @@ public class ViewingPostTest {
                                 fieldWithPath("region").description("지역"),
                                 fieldWithPath("content").description("게시글 내용"),
                                 fieldWithPath("tags").description("태그 (, )로 구분"),
-                                fieldWithPath("nickname").description("글쓴이")
+                                fieldWithPath("nickname").description("글쓴이"),
+                                fieldWithPath("createdAt").description("작성 시간")
                         )
                 ));
     }
@@ -81,7 +82,7 @@ public class ViewingPostTest {
     void getOnePost() throws Exception {
         //When & Then
         mockMvc.perform(get("/post/{id}", 1)
-                        .header(HttpHeaders.HOST, "43.202.6.185:8080"))
+                        .header(HttpHeaders.HOST, "43.202.118.132"))
                 .andExpect(status().isOk())
                 .andDo(restDocs.document(
                         pathParameters(
@@ -96,7 +97,8 @@ public class ViewingPostTest {
                                 fieldWithPath("content").description("글 내용"),
                                 fieldWithPath("region").description("지역"),
                                 fieldWithPath("tags").description("태크 (, )로 구분"),
-                                fieldWithPath("nickname").description("글쓴이 닉네임")
+                                fieldWithPath("nickname").description("글쓴이 닉네임"),
+                                fieldWithPath("createdAt").description("작성 시간")
                         )
                 ));
     }

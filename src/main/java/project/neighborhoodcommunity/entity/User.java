@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import project.neighborhoodcommunity.dto.RequestSignUpDto;
 import project.neighborhoodcommunity.dto.UserDto;
 
 import java.util.List;
@@ -32,11 +31,5 @@ public class User {
         this.gender = userDto.getGender();
         this.nickname = userDto.getNickname();
         this.profile_img = userDto.getProfile_img();
-    }
-
-    public void update(RequestSignUpDto requestSignUpDto) {
-        this.gender = requestSignUpDto.getGender();
-        this.nickname = requestSignUpDto.getNickname();
-        this.profile_img = requestSignUpDto.getProfile_img();
     }
 }

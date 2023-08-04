@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import project.neighborhoodcommunity.dto.TokenDto;
@@ -36,12 +35,11 @@ public class SignInUpController {
 
         try {
             user = kakaoLoginService.attemptLogin(requestSignUpDto.getKakaoid());
-            user = userService.updateInfo(user, requestSignUpDto);
         } catch (NotFoundException e) {
             user = userService.join(requestSignUpDto);
         }
 
-        TokenDto tokenDto = jwtTokenService.createToken(user);
+        TokenDto tokenDto = jwtTokenService.generateTokenForUser(user, requestSignUpDto.getProfile_img());
         return new ResponseEntity<>(new CommonResponse<>(tokenDto, SUCCESS), HttpStatus.OK);
     }
 

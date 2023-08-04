@@ -61,7 +61,7 @@ public class MyPostTest {
 
         //When & Then
         mockMvc.perform(get("/posts/my")
-                        .header(HttpHeaders.HOST, "43.202.6.185:8080")
+                        .header(HttpHeaders.HOST, "43.202.118.132")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
                         .queryParam("category", "all")
                         .queryParam("page", "1"))
@@ -90,7 +90,8 @@ public class MyPostTest {
                                 fieldWithPath("region").description("지역"),
                                 fieldWithPath("content").description("게시글 내용"),
                                 fieldWithPath("tags").description("태그 (, )로 구분"),
-                                fieldWithPath("nickname").description("글쓴이")
+                                fieldWithPath("nickname").description("글쓴이"),
+                                fieldWithPath("createdAt").description("작성 시간")
                         )
                 ));
     }
@@ -102,7 +103,7 @@ public class MyPostTest {
 
         //When & Then
         mockMvc.perform(delete("/post/d/{id}", 4)
-                        .header(HttpHeaders.HOST, "43.202.6.185:8080")
+                        .header(HttpHeaders.HOST, "43.202.118.132")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken))
                 .andExpect(status().isOk())
                 .andDo(restDocs.document(
@@ -131,7 +132,7 @@ public class MyPostTest {
 
         //When & Then
         mockMvc.perform(patch("/post/u/{id}", 2)
-                        .header(HttpHeaders.HOST, "43.202.6.185:8080")
+                        .header(HttpHeaders.HOST, "43.202.118.132")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(postDto)))
@@ -164,7 +165,7 @@ public class MyPostTest {
 
         //When & Then
         mockMvc.perform(post("/post/i")
-                        .header(HttpHeaders.HOST, "43.202.6.185:8080")
+                        .header(HttpHeaders.HOST, "43.202.118.132")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(postDto)))

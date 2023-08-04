@@ -81,11 +81,11 @@ public class KakaoLoginTest {
         when(kakaoAccessTokenProviderService.getAccessToken(any())).thenReturn("test_access_token");
         when(kakaoUserInfoProviderService.getUserInfo(any())).thenReturn(requestSignUpDto);
         when(kakaoLoginService.attemptLogin(any())).thenReturn(new User());
-        when(jwtTokenService.createToken(any())).thenReturn(tokenDto);
+        when(jwtTokenService.generateTokenForUser(any(), any())).thenReturn(tokenDto);
 
         // Then
         mockMvc.perform(post("/kakao")
-                        .header(HttpHeaders.HOST, "43.202.6.185:8080")
+                        .header(HttpHeaders.HOST, "43.202.118.132")
                         .queryParam("code", "Authorization-Code"))
                 .andExpect(status().isOk())
                 .andDo(print())

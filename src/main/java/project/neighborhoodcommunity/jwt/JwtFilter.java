@@ -1,28 +1,33 @@
 package project.neighborhoodcommunity.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
 import project.constant.CommonResponse;
 import project.constant.CommonResponseStatus;
+import project.neighborhoodcommunity.exception.AccessDeniedException;
+import project.neighborhoodcommunity.exception.ExpiredJwtTokenException;
 import project.neighborhoodcommunity.exception.UnsuitableJwtException;
 
 import java.io.IOException;
+import java.util.Set;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class JwtFilter extends GenericFilterBean {
 
     private final JwtTokenProvider jwtTokenProvider;
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final Set<String> securedPaths = Set.of("/jwt","/posts/my", "/post/d/", "/post/u/", "/post/i"
+            ,"/mypage");
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -30,18 +35,20 @@ public class JwtFilter extends GenericFilterBean {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 
-        String jwt = resolveToken(httpServletRequest.getHeader("Authorization"));
-
-        if (StringUtils.hasText(jwt)) {
+        String path = ((HttpServletRequest) request).getRequestURI();
+        if (securedPaths.stream().anyMatch(path::startsWith)) {
             try {
+                String jwt = resolveToken(httpServletRequest.getHeader("Authorization"));
                 jwtTokenProvider.validateToken(jwt);
                 Authentication authentication = jwtTokenProvider.getAuthentication(jwt);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 chain.doFilter(request, response);
             } catch (UnsuitableJwtException e) {
                 sendResponse(httpServletResponse, CommonResponseStatus.UNSUITABLE_JWT);
-            } catch (ExpiredJwtException e) {
+            } catch (ExpiredJwtTokenException e) {
                 sendResponse(httpServletResponse, CommonResponseStatus.EXPIRED_JWT);
+            } catch (AccessDeniedException e) {
+                sendResponse(httpServletResponse, CommonResponseStatus.UNAUTHORIZED);
             }
         } else
             chain.doFilter(request, response);
@@ -55,16 +62,14 @@ public class JwtFilter extends GenericFilterBean {
     }
 
     private String convertObjectToJson(Object object) throws IOException {
-        if (object == null) {
+        if (object == null)
             return null;
-        }
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(object);
+        return objectMapper.writeValueAsString(object);
     }
 
     private String resolveToken(String bearerToken) {
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer "))
             return bearerToken.substring(7);
-        return null;
+        throw new AccessDeniedException(CommonResponseStatus.UNAUTHORIZED);
     }
 }
