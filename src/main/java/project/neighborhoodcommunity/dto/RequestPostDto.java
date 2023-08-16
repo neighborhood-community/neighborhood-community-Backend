@@ -16,10 +16,10 @@ import java.time.format.DateTimeFormatter;
 public class RequestPostDto {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Long id;
+    private String title;
     private String category;
     private String region;
     private String content;
-    private String tags;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String nickname;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -27,10 +27,10 @@ public class RequestPostDto {
 
     public RequestPostDto(Post post, String nickname) {
         this.id = post.getId();
+        this.title = post.getTitle();
         this.category = post.getCategory();
         this.region = post.getRegion();
         this.content = post.getContent();
-        this.tags = post.getTags();
         this.nickname = nickname;
         this.createdAt = post.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }

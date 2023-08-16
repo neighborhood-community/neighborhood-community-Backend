@@ -17,10 +17,10 @@ public class Post {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String title;
     private String category;
     private String region;
     private String content;
-    private String tags;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -31,10 +31,10 @@ public class Post {
     private User user;
 
     public Post(RequestPostDto postDto, User user) {
+        this.title = postDto.getTitle();
         this.category = postDto.getCategory();
         this.region = postDto.getRegion();
         this.content = postDto.getContent();
-        this.tags = postDto.getTags();
         this.user = user;
     }
 
@@ -43,9 +43,9 @@ public class Post {
             throw new AccessDeniedException(CommonResponseStatus.UNEQUAL_USER);
 
         this.id = id;
+        this.title = postDto.getTitle();
         this.category = postDto.getCategory();
         this.region = postDto.getRegion();
         this.content = postDto.getContent();
-        this.tags = postDto.getTags();
     }
 }

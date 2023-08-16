@@ -86,10 +86,10 @@ public class MyPostTest {
                                 fieldWithPath("data.posts[]").description("게시글 리스트")
                         ).andWithPrefix("data.posts[].",
                                 fieldWithPath("id").description("게시글 번호"),
+                                fieldWithPath("title").description("게시글 제목"),
                                 fieldWithPath("category").description("카테고리"),
                                 fieldWithPath("region").description("지역"),
                                 fieldWithPath("content").description("게시글 내용"),
-                                fieldWithPath("tags").description("태그 (, )로 구분"),
                                 fieldWithPath("nickname").description("글쓴이"),
                                 fieldWithPath("createdAt").description("작성 시간")
                         )
@@ -125,10 +125,10 @@ public class MyPostTest {
         //Given
         String accessToken = jwtTokenProvider.createToken("2927239559");
         RequestPostDto postDto = new RequestPostDto();
+        postDto.setTitle("영화 추천");
         postDto.setCategory("movie");
         postDto.setRegion("서울시");
-        postDto.setContent("testtest");
-        postDto.setTags("test1");
+        postDto.setContent("영화 추천해주세요 넷플릭스, 현재 상영 영화 상관 없습니다.");
 
         //When & Then
         mockMvc.perform(patch("/post/u/{id}", 2)
@@ -146,9 +146,9 @@ public class MyPostTest {
                         ),
                         requestFields(
                                 fieldWithPath("category").description("카테고리"),
+                                fieldWithPath("title").description("게시글 제목"),
                                 fieldWithPath("region").description("지역"),
-                                fieldWithPath("content").description("글 내용"),
-                                fieldWithPath("tags").description("태크 (, )로 구분")
+                                fieldWithPath("content").description("글 내용")
                         )
                 ));
     }
@@ -158,10 +158,10 @@ public class MyPostTest {
         //Given
         String accessToken = jwtTokenProvider.createToken("2927239559");
         RequestPostDto postDto = new RequestPostDto();
+        postDto.setTitle("영화 추천");
         postDto.setCategory("movie");
         postDto.setRegion("서울시");
-        postDto.setContent("testtest");
-        postDto.setTags("test1");
+        postDto.setContent("영화 추천해주세요 넷플릭스, 현재 상영 영화 상관 없습니다.");
 
         //When & Then
         mockMvc.perform(post("/post/i")
@@ -176,9 +176,9 @@ public class MyPostTest {
                         ),
                         requestFields(
                                 fieldWithPath("category").description("카테고리"),
+                                fieldWithPath("title").description("게시글 제목"),
                                 fieldWithPath("content").description("글 내용"),
-                                fieldWithPath("region").description("지역"),
-                                fieldWithPath("tags").description("태크 (, )로 구분")
+                                fieldWithPath("region").description("지역")
                         )
                 ));
     }

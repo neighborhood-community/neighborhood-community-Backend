@@ -68,10 +68,10 @@ public class ViewingPostTest {
                                 fieldWithPath("data.posts[]").description("게시글 리스트")
                         ).andWithPrefix("data.posts[].",
                                 fieldWithPath("id").description("게시글 번호"),
+                                fieldWithPath("title").description("게시글 제목"),
                                 fieldWithPath("category").description("카테고리"),
                                 fieldWithPath("region").description("지역"),
                                 fieldWithPath("content").description("게시글 내용"),
-                                fieldWithPath("tags").description("태그 (, )로 구분"),
                                 fieldWithPath("nickname").description("글쓴이"),
                                 fieldWithPath("createdAt").description("작성 시간")
                         )
@@ -93,10 +93,10 @@ public class ViewingPostTest {
                                 fieldWithPath("message").description("상태 메시지")
                         ).andWithPrefix("data.",
                                 fieldWithPath("id").description("게시글 번호"),
+                                fieldWithPath("title").description("게시글 제목"),
                                 fieldWithPath("category").description("카테고리"),
                                 fieldWithPath("content").description("글 내용"),
                                 fieldWithPath("region").description("지역"),
-                                fieldWithPath("tags").description("태크 (, )로 구분"),
                                 fieldWithPath("nickname").description("글쓴이 닉네임"),
                                 fieldWithPath("createdAt").description("작성 시간")
                         )
