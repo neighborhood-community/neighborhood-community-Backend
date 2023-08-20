@@ -590,7 +590,7 @@ Content-Length: 476
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /jwt HTTP/1.1
 Host: 43.202.118.132
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTYiLCJleHAiOjE2OTIxODAzNjB9.IgGkhrANk8-YDWUWM77Xw9qDEfTY0vVq8kGdJQk89GUf1hMGJG52cAedh2JXkR5yq2LCZ34zQLSXK4XwC3cYqw</code></pre>
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTYiLCJleHAiOjE2OTI1MjAwNjN9.dJmQAj0MgfkUE_T5r0eYJ2_4XE0X1D4oaMhiE-g6WMzRZthKms85975wCB-PnS3hFkGX0W7l-LA4MWSnFBmASQ</code></pre>
 </div>
 </div>
 </div>
@@ -649,7 +649,7 @@ Host: 43.202.118.132
 Content-Length: 183
 
 {
-  "refreshToken" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyMzM1NDE2fQ.Gf5tnY4RUnL9pwqZTvyWfXXk64USDYDuoufWSW0VFUpMDfLErXnQfwAf31aI0fjQlBzJEJiPkmKZ9kRYptsOfw"
+  "refreshToken" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyNTIwMDgxfQ.f6_QEhDtrvOMEVpmoJLFoU9PYKC6ZnK7vvALFvi6zKA5eBWxcZYnprS460g2lng8wbw1uxwqI9cfEa-LPTKsTQ"
 }</code></pre>
 </div>
 </div>
@@ -690,7 +690,7 @@ Content-Length: 269
   "code" : "200",
   "message" : "요청에 성공하였습니다.",
   "data" : {
-    "accessToken" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyMTgwMzYwfQ.FdMdf7ZGbCm-wcg69GlHk4x7fxVutYtsdUuldEpRsuueb5o6QDWlFXHNKyed2or1GJ_pJ3fiieA1K6mCBZLGRA"
+    "accessToken" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyNTIwMDYzfQ.Ho5E-J_9fg_BND0oDREOA2J1RF8A6IbdlTKldDymfTz7HceIdbnQb_vds7Few7iuAGZ_pacNo5JYuJSB3q4nlw"
   }
 }</code></pre>
 </div>
@@ -760,10 +760,12 @@ Host: 43.202.118.132</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>category</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">모두 : all<br>
-반려동물 산책 : pet<br>
+산책 : walk<br>
 영화 : movie<br>
-런닝 : running<br>
-헬스/필라테스/요가 : exercise</p></td>
+술 : alcohol<br>
+운동 : exercise<br>
+독서 : reading<br>
+공부 : study</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>page</code></p></td>
@@ -784,7 +786,7 @@ Content-Length: 2753
   "code" : "200",
   "message" : "요청에 성공하였습니다.",
   "data" : {
-    "totalPages" : 2,
+    "totalPages" : 5,
     "posts" : [ {
       "id" : 1,
       "title" : "강아지 카페",
@@ -1060,7 +1062,7 @@ Content-Length: 359
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /posts/my?category=all&amp;page=1 HTTP/1.1
 Host: 43.202.118.132
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyMTgwMzYwfQ.FdMdf7ZGbCm-wcg69GlHk4x7fxVutYtsdUuldEpRsuueb5o6QDWlFXHNKyed2or1GJ_pJ3fiieA1K6mCBZLGRA</code></pre>
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyNTIwMDY0fQ.5TFxi1NVW0q5TcSZ-4zlbhKEOT6g-Q0hnmCcfFsY2IgxC2dsMneABJZqeWdl7gajKTWf-ExCDyNClpyVyY3oQg</code></pre>
 </div>
 </div>
 </div>
@@ -1102,10 +1104,12 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxN
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>category</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">모두 : all<br>
-반려동물 산책 : pet<br>
+산책 : walk<br>
 영화 : movie<br>
-런닝 : running<br>
-헬스/필라테스/요가 : exercise</p></td>
+술 : alcohol<br>
+운동 : exercise<br>
+독서 : reading<br>
+공부 : study</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>page</code></p></td>
@@ -1266,7 +1270,7 @@ Content-Length: 1794
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /post/i HTTP/1.1
 Content-Type: application/json
 Host: 43.202.118.132
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyMTgwMzYwfQ.FdMdf7ZGbCm-wcg69GlHk4x7fxVutYtsdUuldEpRsuueb5o6QDWlFXHNKyed2or1GJ_pJ3fiieA1K6mCBZLGRA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyNTIwMDY0fQ.5TFxi1NVW0q5TcSZ-4zlbhKEOT6g-Q0hnmCcfFsY2IgxC2dsMneABJZqeWdl7gajKTWf-ExCDyNClpyVyY3oQg
 Content-Length: 180
 
 {
@@ -1371,7 +1375,7 @@ Content-Length: 70
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">DELETE /post/d/4 HTTP/1.1
 Host: 43.202.118.132
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyMTgwMzYwfQ.FdMdf7ZGbCm-wcg69GlHk4x7fxVutYtsdUuldEpRsuueb5o6QDWlFXHNKyed2or1GJ_pJ3fiieA1K6mCBZLGRA</code></pre>
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyNTIwMDY0fQ.5TFxi1NVW0q5TcSZ-4zlbhKEOT6g-Q0hnmCcfFsY2IgxC2dsMneABJZqeWdl7gajKTWf-ExCDyNClpyVyY3oQg</code></pre>
 </div>
 </div>
 </div>
@@ -1481,7 +1485,7 @@ Content-Length: 70
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /post/u/2 HTTP/1.1
 Content-Type: application/json
 Host: 43.202.118.132
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyMTgwMzYwfQ.FdMdf7ZGbCm-wcg69GlHk4x7fxVutYtsdUuldEpRsuueb5o6QDWlFXHNKyed2or1GJ_pJ3fiieA1K6mCBZLGRA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyNTIwMDY0fQ.5TFxi1NVW0q5TcSZ-4zlbhKEOT6g-Q0hnmCcfFsY2IgxC2dsMneABJZqeWdl7gajKTWf-ExCDyNClpyVyY3oQg
 Content-Length: 180
 
 {
@@ -1609,7 +1613,7 @@ Content-Length: 70
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /mypage HTTP/1.1
 Host: 43.202.118.132
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyMTgwMzYwfQ.FdMdf7ZGbCm-wcg69GlHk4x7fxVutYtsdUuldEpRsuueb5o6QDWlFXHNKyed2or1GJ_pJ3fiieA1K6mCBZLGRA</code></pre>
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyNTIwMDY0fQ.5TFxi1NVW0q5TcSZ-4zlbhKEOT6g-Q0hnmCcfFsY2IgxC2dsMneABJZqeWdl7gajKTWf-ExCDyNClpyVyY3oQg</code></pre>
 </div>
 </div>
 </div>
@@ -1717,7 +1721,7 @@ Content-Length: 246
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /mypage/u HTTP/1.1
 Content-Type: application/json
 Host: 43.202.118.132
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyMTgwMzYwfQ.FdMdf7ZGbCm-wcg69GlHk4x7fxVutYtsdUuldEpRsuueb5o6QDWlFXHNKyed2or1GJ_pJ3fiieA1K6mCBZLGRA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyNTIwMDY0fQ.5TFxi1NVW0q5TcSZ-4zlbhKEOT6g-Q0hnmCcfFsY2IgxC2dsMneABJZqeWdl7gajKTWf-ExCDyNClpyVyY3oQg
 Content-Length: 77
 
 {

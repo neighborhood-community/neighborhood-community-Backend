@@ -472,10 +472,12 @@ Host: 43.202.118.132</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>category</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">모두 : all<br>
-반려동물 산책 : pet<br>
+산책 : walk<br>
 영화 : movie<br>
-런닝 : running<br>
-헬스/필라테스/요가 : exercise</p></td>
+술 : alcohol<br>
+운동 : exercise<br>
+독서 : reading<br>
+공부 : study</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>page</code></p></td>
@@ -496,7 +498,7 @@ Content-Length: 2753
   "code" : "200",
   "message" : "요청에 성공하였습니다.",
   "data" : {
-    "totalPages" : 2,
+    "totalPages" : 5,
     "posts" : [ {
       "id" : 1,
       "title" : "강아지 카페",
@@ -772,7 +774,7 @@ Content-Length: 359
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /posts/my?category=all&amp;page=1 HTTP/1.1
 Host: 43.202.118.132
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyMTgwMzYwfQ.FdMdf7ZGbCm-wcg69GlHk4x7fxVutYtsdUuldEpRsuueb5o6QDWlFXHNKyed2or1GJ_pJ3fiieA1K6mCBZLGRA</code></pre>
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyNTIwMDY0fQ.5TFxi1NVW0q5TcSZ-4zlbhKEOT6g-Q0hnmCcfFsY2IgxC2dsMneABJZqeWdl7gajKTWf-ExCDyNClpyVyY3oQg</code></pre>
 </div>
 </div>
 </div>
@@ -814,10 +816,12 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxN
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>category</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">모두 : all<br>
-반려동물 산책 : pet<br>
+산책 : walk<br>
 영화 : movie<br>
-런닝 : running<br>
-헬스/필라테스/요가 : exercise</p></td>
+술 : alcohol<br>
+운동 : exercise<br>
+독서 : reading<br>
+공부 : study</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>page</code></p></td>
@@ -978,7 +982,7 @@ Content-Length: 1794
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">POST /post/i HTTP/1.1
 Content-Type: application/json
 Host: 43.202.118.132
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyMTgwMzYwfQ.FdMdf7ZGbCm-wcg69GlHk4x7fxVutYtsdUuldEpRsuueb5o6QDWlFXHNKyed2or1GJ_pJ3fiieA1K6mCBZLGRA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyNTIwMDY0fQ.5TFxi1NVW0q5TcSZ-4zlbhKEOT6g-Q0hnmCcfFsY2IgxC2dsMneABJZqeWdl7gajKTWf-ExCDyNClpyVyY3oQg
 Content-Length: 180
 
 {
@@ -1083,7 +1087,7 @@ Content-Length: 70
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">DELETE /post/d/4 HTTP/1.1
 Host: 43.202.118.132
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyMTgwMzYwfQ.FdMdf7ZGbCm-wcg69GlHk4x7fxVutYtsdUuldEpRsuueb5o6QDWlFXHNKyed2or1GJ_pJ3fiieA1K6mCBZLGRA</code></pre>
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyNTIwMDY0fQ.5TFxi1NVW0q5TcSZ-4zlbhKEOT6g-Q0hnmCcfFsY2IgxC2dsMneABJZqeWdl7gajKTWf-ExCDyNClpyVyY3oQg</code></pre>
 </div>
 </div>
 </div>
@@ -1193,7 +1197,7 @@ Content-Length: 70
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">PATCH /post/u/2 HTTP/1.1
 Content-Type: application/json
 Host: 43.202.118.132
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyMTgwMzYwfQ.FdMdf7ZGbCm-wcg69GlHk4x7fxVutYtsdUuldEpRsuueb5o6QDWlFXHNKyed2or1GJ_pJ3fiieA1K6mCBZLGRA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyNTIwMDY0fQ.5TFxi1NVW0q5TcSZ-4zlbhKEOT6g-Q0hnmCcfFsY2IgxC2dsMneABJZqeWdl7gajKTWf-ExCDyNClpyVyY3oQg
 Content-Length: 180
 
 {

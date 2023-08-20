@@ -73,10 +73,12 @@ public class MyPostTest {
                         queryParameters(
                                 parameterWithName("category").description("""
                                         모두 : all +
-                                        반려동물 산책 : pet +
+                                        산책 : walk +
                                         영화 : movie +
-                                        런닝 : running +
-                                        헬스/필라테스/요가 : exercise"""),
+                                        술 : alcohol +
+                                        운동 : exercise +
+                                        독서 : reading +
+                                        공부 : study"""),
                                 parameterWithName("page").description("1페이지당 8개의 게시글")
                         ),
                         responseFields(
