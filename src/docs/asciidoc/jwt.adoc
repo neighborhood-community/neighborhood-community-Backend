@@ -4,7 +4,7 @@ AccessToken 유효시간 : 30분 +
 
 RefreshToken 유효시간 : 2주
 
-=== AccessToken 검증
+=== RefreshToken 검증
 operation::jwt-test/pass-jwt[snippets='http-request,request-headers,http-response']
 
 === AccessToken 재발급

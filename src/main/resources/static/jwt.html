@@ -455,19 +455,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_accesstoken_검증">AccessToken 검증</h3>
+<h3 id="_refreshtoken_검증">RefreshToken 검증</h3>
 <div class="sect3">
-<h4 id="_accesstoken_검증_http_request">HTTP request</h4>
+<h4 id="_refreshtoken_검증_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /jwt HTTP/1.1
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /refresh-token-validity HTTP/1.1
 Host: 43.202.118.132
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTYiLCJleHAiOjE2OTI1MjAwNjN9.dJmQAj0MgfkUE_T5r0eYJ2_4XE0X1D4oaMhiE-g6WMzRZthKms85975wCB-PnS3hFkGX0W7l-LA4MWSnFBmASQ</code></pre>
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTYiLCJleHAiOjE2OTM3NTA5OTl9.CVDN07uw2zCwDVxxepzw3Cpth6g5tr_JRtEpzHWDMygb_FxlUY9hgW40eggJXaSJyoumTAmrbJU6QyK0iBeuLw</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_accesstoken_검증_request_headers">Request headers</h4>
+<h4 id="_refreshtoken_검증_request_headers">Request headers</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -482,29 +482,32 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTYiLCJleHAiOjE2OTI1M
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Bearer {AccessToken}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bearer {refreshToken}</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_accesstoken_검증_http_response">HTTP response</h4>
+<h4 id="_refreshtoken_검증_http_response">HTTP response</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
-Content-Type: text/plain;charset=UTF-8
-Content-Length: 6
+Content-Type: application/json
 X-Content-Type-Options: nosniff
 X-XSS-Protection: 0
 Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: SAMEORIGIN
+Content-Length: 70
 
-성공</code></pre>
+{
+  "code" : "200",
+  "message" : "요청에 성공하였습니다."
+}</code></pre>
 </div>
 </div>
 </div>
@@ -521,7 +524,7 @@ Host: 43.202.118.132
 Content-Length: 183
 
 {
-  "refreshToken" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyNTIwMDgxfQ.f6_QEhDtrvOMEVpmoJLFoU9PYKC6ZnK7vvALFvi6zKA5eBWxcZYnprS460g2lng8wbw1uxwqI9cfEa-LPTKsTQ"
+  "refreshToken" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkzNzUwOTgyfQ.D6wGaUCPfuwNGTtiguz9tKgUsWgEu0AhnQekD3N_33lExV-fkTOe33gzzbmsnrZbSFhb6HuwYABaOSCYH9495Q"
 }</code></pre>
 </div>
 </div>
@@ -562,7 +565,7 @@ Content-Length: 269
   "code" : "200",
   "message" : "요청에 성공하였습니다.",
   "data" : {
-    "accessToken" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyNTIwMDYzfQ.Ho5E-J_9fg_BND0oDREOA2J1RF8A6IbdlTKldDymfTz7HceIdbnQb_vds7Few7iuAGZ_pacNo5JYuJSB3q4nlw"
+    "accessToken" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkzNzUwOTU5fQ.NYRhQPJQ4JxRV4g5xFZzRpv6feqlksR8sxq5rq7I4JZkxK1V--63DGxRyNwQp_c5SdgGaEwxaUkqREXe5FEldg"
   }
 }</code></pre>
 </div>
@@ -607,7 +610,7 @@ Content-Length: 269
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-07-29 23:07:43 +0900
+Last updated 2023-09-03 23:02:12 +0900
 </div>
 </div>
 </body>

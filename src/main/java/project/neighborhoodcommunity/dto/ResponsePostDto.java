@@ -3,9 +3,11 @@ package project.neighborhoodcommunity.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import project.neighborhoodcommunity.entity.User;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -20,20 +22,25 @@ public class ResponsePostDto {
     @NoArgsConstructor
     public static class Posts {
         private Long id;
-        private String title;
         private String category;
-        private String region;
+        private String title;
         private String content;
+        private String region;
+        private String profileImg;
         private String nickname;
+        private String gender;
         private String createdAt;
 
-        public Posts(final project.neighborhoodcommunity.entity.Post post, final String nickname) {
+
+        public Posts(final project.neighborhoodcommunity.entity.Post post, final User user) {
             this.id = post.getId();
             this.title = post.getTitle();
             this.category = post.getCategory();
-            this.region = post.getRegion();
             this.content = post.getContent();
-            this.nickname = nickname;
+            this.region = post.getRegion();
+            this.profileImg = user.getProfile_img();
+            this.nickname = user.getNickname();
+            this.gender = String.valueOf(user.getGender());
             this.createdAt = post.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         }
     }

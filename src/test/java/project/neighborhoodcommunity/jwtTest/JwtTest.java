@@ -50,15 +50,15 @@ public class JwtTest {
     @Test
     public void passJwt() throws Exception {
         // Given
-        String accessToken = jwtTokenProvider.createToken("123456");
+        String refreshToken = jwtTokenProvider.createRefreshToken("123456");
         // When & Then
-        mockMvc.perform(get("/jwt")
+        mockMvc.perform(get("/refresh-token-validity")
                         .header(HttpHeaders.HOST, "43.202.118.132")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken))
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + refreshToken))
                 .andExpect(status().isOk())
                 .andDo(restDocs.document(
                         requestHeaders(
-                                headerWithName(HttpHeaders.AUTHORIZATION).description("Bearer {AccessToken}")
+                                headerWithName(HttpHeaders.AUTHORIZATION).description("Bearer {refreshToken}")
                         )
                 ));
     }

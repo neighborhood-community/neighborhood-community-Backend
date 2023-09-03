@@ -85,7 +85,6 @@ public class MyPageTest {
         UserDto userDto = new UserDto();
         userDto.setGender("male");
         userDto.setNickname("aossuepr8");
-        userDto.setProfile_img("test");
 
         //When & Then
         mockMvc.perform(patch("/mypage/u")
@@ -100,8 +99,7 @@ public class MyPageTest {
                         ),
                         requestFields(
                                 fieldWithPath("gender").description("사용자 성별"),
-                                fieldWithPath("nickname").description("사용자 닉네임"),
-                                fieldWithPath("profile_img").description("사용자 프로필 이미지")
+                                fieldWithPath("nickname").description("사용자 닉네임")
                         )
                 ));
     }

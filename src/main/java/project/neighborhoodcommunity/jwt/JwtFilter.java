@@ -26,8 +26,8 @@ public class JwtFilter extends GenericFilterBean {
 
     private final JwtTokenProvider jwtTokenProvider;
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private final Set<String> securedPaths = Set.of("/jwt","/posts/my", "/post/d/", "/post/u/", "/post/i"
-            ,"/mypage");
+    private final Set<String> securedPaths = Set.of("/posts/my", "/post/d/", "/post/u/", "/post/i"
+            ,"/mypage", "/mypage/posts");
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

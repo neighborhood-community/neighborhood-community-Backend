@@ -35,7 +35,6 @@ public class UserService {
 
     public String verifyToken(String token) {
         String kakaoId = jwtTokenProvider.extractIDs(token);
-        System.out.println(kakaoId);
         if (!userRepository.existsByKakaoidAndRefreshToken(kakaoId, token))
             throw new NotFoundException(CommonResponseStatus.NOT_FOUND_JWT);
         return kakaoId;

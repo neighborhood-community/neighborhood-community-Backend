@@ -46,7 +46,7 @@ public class PostService {
 
     private ResponsePostDto convertPostsToDto(Page<Post> posts) {
         List<ResponsePostDto.Posts> postDtoList = posts
-                .map(post -> new ResponsePostDto.Posts(post, post.getUser().getNickname()))
+                .map(post -> new ResponsePostDto.Posts(post, post.getUser()))
                 .getContent();
         return new ResponsePostDto(posts.getTotalPages(), postDtoList);
     }
@@ -80,7 +80,7 @@ public class PostService {
 
     public RequestPostDto getPostById(Long id) {
         Post post = findById(id);
-        return new RequestPostDto(post, post.getUser().getNickname());
+        return new RequestPostDto(post, post.getUser());
     }
 
     private Post findById(Long id) {

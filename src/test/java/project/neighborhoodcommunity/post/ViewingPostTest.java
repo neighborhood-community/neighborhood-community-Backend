@@ -49,6 +49,7 @@ public class ViewingPostTest {
         mockMvc.perform(get("/posts")
                         .header(HttpHeaders.HOST, "43.202.118.132")
                         .queryParam("category", "all")
+                        .queryParam("perPage", "15")
                         .queryParam("page", "1"))
                 .andExpect(status().isOk())
                 .andDo(restDocs.document(
@@ -61,7 +62,8 @@ public class ViewingPostTest {
                                         운동 : exercise +
                                         독서 : reading +
                                         공부 : study"""),
-                                parameterWithName("page").description("1페이지당 8개의 게시글")
+                                parameterWithName("perPage").description("1페이지당 몇 개의 게시글을 보여줄지 결정"),
+                                parameterWithName("page").description("n 페이지")
                         ),
                         responseFields(
                                 fieldWithPath("code").description("Http 상태코드"),
@@ -72,9 +74,11 @@ public class ViewingPostTest {
                                 fieldWithPath("id").description("게시글 번호"),
                                 fieldWithPath("title").description("게시글 제목"),
                                 fieldWithPath("category").description("카테고리"),
-                                fieldWithPath("region").description("지역"),
                                 fieldWithPath("content").description("게시글 내용"),
+                                fieldWithPath("region").description("지역"),
+                                fieldWithPath("profileImg").description("프로필 이미지"),
                                 fieldWithPath("nickname").description("글쓴이"),
+                                fieldWithPath("gender").description("글쓴이 성별"),
                                 fieldWithPath("createdAt").description("작성 시간")
                         )
                 ));
@@ -99,7 +103,9 @@ public class ViewingPostTest {
                                 fieldWithPath("category").description("카테고리"),
                                 fieldWithPath("content").description("글 내용"),
                                 fieldWithPath("region").description("지역"),
+                                fieldWithPath("profileImg").description("프로필 이미지"),
                                 fieldWithPath("nickname").description("글쓴이 닉네임"),
+                                fieldWithPath("gender").description("글쓴이 성별"),
                                 fieldWithPath("createdAt").description("작성 시간")
                         )
                 ));

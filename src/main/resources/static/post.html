@@ -450,7 +450,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h4 id="_카테고리별_모든_게시글_조회_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /posts?category=all&amp;page=1 HTTP/1.1
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /posts?category=all&amp;perPage=15&amp;page=1 HTTP/1.1
 Host: 43.202.118.132</code></pre>
 </div>
 </div>
@@ -480,8 +480,12 @@ Host: 43.202.118.132</code></pre>
 공부 : study</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>perPage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1페이지당 몇 개의 게시글을 보여줄지 결정</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>page</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1페이지당 8개의 게시글</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">n 페이지</p></td>
 </tr>
 </tbody>
 </table>
@@ -492,77 +496,93 @@ Host: 43.202.118.132</code></pre>
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 2753
+Content-Length: 3236
 
 {
   "code" : "200",
   "message" : "요청에 성공하였습니다.",
   "data" : {
-    "totalPages" : 5,
+    "totalPages" : 1,
     "posts" : [ {
       "id" : 1,
-      "title" : "강아지 카페",
-      "category" : "pet",
-      "region" : "경기도",
-      "content" : "강아지 카페 어디가 좋은가요? 우리 선재도 데려가고 싶어요!",
+      "category" : "walk",
+      "title" : "선재야 산책 같이 가자",
+      "content" : "산책 같이 가는 부분이야",
+      "region" : "서울시",
+      "profileImg" : "http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg",
       "nickname" : "최선재",
-      "createdAt" : "2023-08-01 17:00:01"
+      "gender" : "null",
+      "createdAt" : "2023-08-20 15:44:23"
     }, {
       "id" : 2,
-      "title" : "인시디어스 시리즈",
       "category" : "movie",
-      "region" : "서울시",
-      "content" : "인시디어스 시리즈 너무 재미있어요 같이 보실분 있나요? 선재랑 같이 봤으면 좋겠는데",
-      "nickname" : "박정민",
-      "createdAt" : "2023-08-01 17:00:18"
+      "title" : "선재야 영화 같이 보자",
+      "content" : "영화 같이 보는 부분이야",
+      "region" : "경기도",
+      "profileImg" : "http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg",
+      "nickname" : "최선재",
+      "gender" : "null",
+      "createdAt" : "2023-08-20 15:45:53"
     }, {
       "id" : 3,
-      "title" : "한강공원 런닝 같이",
-      "category" : "running",
-      "region" : "서울시",
-      "content" : "오늘 여의도 한강공원 같이 런닝하실분 있으신가요? 선재 같이했으면 좋겠는데",
+      "category" : "alcohol",
+      "title" : "선재야 술 같이 먹자",
+      "content" : "술 같이 먹는 부분이야",
+      "region" : "충청북도",
+      "profileImg" : "http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg",
       "nickname" : "박정민",
-      "createdAt" : "2023-08-01 17:00:21"
+      "gender" : "male",
+      "createdAt" : "2023-08-20 15:46:12"
     }, {
       "id" : 4,
-      "title" : "헬스 몸의 변화",
       "category" : "exercise",
-      "region" : "충청북도",
-      "content" : "6개월차부터 몸에 변화가 일어나네요 운동 재미있어요 선재가 운동 하라했을때부터 했어야 했어요",
-      "nickname" : "박정민",
-      "createdAt" : "2023-08-01 17:00:23"
+      "title" : "선재야 운동 같이 하자",
+      "content" : "운동 같이하자 이거야",
+      "region" : "강원도",
+      "profileImg" : "http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg",
+      "nickname" : "최선재",
+      "gender" : "null",
+      "createdAt" : "2023-08-20 15:47:34"
     }, {
       "id" : 5,
-      "title" : "강아지 산책",
-      "category" : "pet",
-      "region" : "강원도",
-      "content" : "저희 강아지 산책 시켜주실분~ 사람 안물고 애교 많아요 선재 같이했으면 좋겠어요",
+      "category" : "reading",
+      "title" : "선재야 독서 같이하자",
+      "content" : "독서 같이하자 이거야",
+      "region" : "충청남도",
+      "profileImg" : "http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg",
       "nickname" : "박정민",
-      "createdAt" : "2023-08-01 17:00:27"
+      "gender" : "male",
+      "createdAt" : "2023-08-20 15:48:31"
     }, {
       "id" : 6,
-      "title" : "넷플릭스 영화 추천",
-      "category" : "movie",
-      "region" : "강원도",
-      "content" : "넷플릭스 재미있는 영화 추천 해주세요 너무 흔한 영화는 말고요 선재랑 같이볼거에요",
-      "nickname" : "최선재",
-      "createdAt" : "2023-08-01 17:00:31"
+      "category" : "study",
+      "title" : "선재야 공부 같이하자",
+      "content" : "공부 같이하자 이거야",
+      "region" : "경상남도",
+      "profileImg" : "http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg",
+      "nickname" : "박정민",
+      "gender" : "male",
+      "createdAt" : "2023-08-20 15:40:12"
     }, {
       "id" : 7,
-      "title" : "아침마다 런닝",
-      "category" : "running",
-      "region" : "경상남도",
-      "content" : "저랑 같이 매일 아침마다 런닝 하실분 계신가요? 선재랑 같이 하고싶어요",
+      "category" : "운동",
+      "title" : "선재야 이건 뭐니",
+      "content" : "ㅁㄴㅇㄹㄴㅁㄹ",
+      "region" : "ㅋㅌㅊㅍㅋ",
+      "profileImg" : "http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg",
       "nickname" : "최선재",
-      "createdAt" : "2023-08-01 17:00:34"
+      "gender" : "null",
+      "createdAt" : "2023-08-21 14:19:31"
     }, {
       "id" : 8,
-      "title" : "필라테스 추천",
-      "category" : "exercise",
-      "region" : "전라북도",
-      "content" : "필라테스 좋은 곳 어디인가요? 추천 해주세요 선재랑 같이 다닐려고 해요",
+      "category" : "운동",
+      "title" : "난 삼대 300임",
+      "content" : "삼대400이상 구함",
+      "region" : "안산",
+      "profileImg" : "http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg",
       "nickname" : "최선재",
-      "createdAt" : "2023-08-01 17:00:36"
+      "gender" : "null",
+      "createdAt" : "2023-08-21 15:21:28"
     } ]
   }
 }</code></pre>
@@ -621,19 +641,29 @@ Content-Length: 2753
 <td class="tableblock halign-left valign-top"><p class="tableblock">카테고리</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].region</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">지역</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].content</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">게시글 내용</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].region</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">지역</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].profileImg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">프로필 이미지</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].nickname</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">글쓴이</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].gender</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">글쓴이 성별</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].createdAt</code></p></td>
@@ -683,19 +713,21 @@ Host: 43.202.118.132</code></pre>
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 359
+Content-Length: 454
 
 {
   "code" : "200",
   "message" : "요청에 성공하였습니다.",
   "data" : {
     "id" : 1,
-    "title" : "강아지 카페",
-    "category" : "pet",
-    "region" : "경기도",
-    "content" : "강아지 카페 어디가 좋은가요? 우리 선재도 데려가고 싶어요!",
+    "title" : "선재야 산책 같이 가자",
+    "category" : "walk",
+    "region" : "서울시",
+    "content" : "산책 같이 가는 부분이야",
     "nickname" : "최선재",
-    "createdAt" : "2023-08-01 17:00:01"
+    "profileImg" : "http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg",
+    "gender" : "null",
+    "createdAt" : "2023-08-20 15:44:23"
   }
 }</code></pre>
 </div>
@@ -753,9 +785,19 @@ Content-Length: 359
 <td class="tableblock halign-left valign-top"><p class="tableblock">지역</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.profileImg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">프로필 이미지</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.nickname</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">글쓴이 닉네임</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.gender</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">글쓴이 성별</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.createdAt</code></p></td>
@@ -772,9 +814,9 @@ Content-Length: 359
 <h4 id="_내가_쓴_게시글_카테고리별_조회_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /posts/my?category=all&amp;page=1 HTTP/1.1
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /mypage/posts?category=all&amp;perPage=10&amp;page=1 HTTP/1.1
 Host: 43.202.118.132
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyNTIwMDY0fQ.5TFxi1NVW0q5TcSZ-4zlbhKEOT6g-Q0hnmCcfFsY2IgxC2dsMneABJZqeWdl7gajKTWf-ExCDyNClpyVyY3oQg</code></pre>
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkzNzUwOTYwfQ.v4vm-0PV7NXzgzTxY-X5USx2ry0uBB6oUOULIZmcFGIDJWe1A7UO52BF1nswtNwDRzGwcjBJdaFE71B5VGBSeQ</code></pre>
 </div>
 </div>
 </div>
@@ -824,8 +866,12 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxN
 공부 : study</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>perPage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1페이지당 몇개의 게시글을 보여줄지 결정</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>page</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1페이지당 8개의 게시글</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">n 페이지</p></td>
 </tr>
 </tbody>
 </table>
@@ -845,7 +891,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: SAMEORIGIN
-Content-Length: 1794
+Content-Length: 1306
 
 {
   "code" : "200",
@@ -853,45 +899,35 @@ Content-Length: 1794
   "data" : {
     "totalPages" : 1,
     "posts" : [ {
-      "id" : 2,
-      "title" : "인시디어스 시리즈",
-      "category" : "movie",
-      "region" : "서울시",
-      "content" : "인시디어스 시리즈 너무 재미있어요 같이 보실분 있나요? 선재랑 같이 봤으면 좋겠는데",
-      "nickname" : "박정민",
-      "createdAt" : "2023-08-01 17:00:18"
-    }, {
       "id" : 3,
-      "title" : "한강공원 런닝 같이",
-      "category" : "running",
-      "region" : "서울시",
-      "content" : "오늘 여의도 한강공원 같이 런닝하실분 있으신가요? 선재 같이했으면 좋겠는데",
-      "nickname" : "박정민",
-      "createdAt" : "2023-08-01 17:00:21"
-    }, {
-      "id" : 4,
-      "title" : "헬스 몸의 변화",
-      "category" : "exercise",
+      "category" : "alcohol",
+      "title" : "선재야 술 같이 먹자",
+      "content" : "술 같이 먹는 부분이야",
       "region" : "충청북도",
-      "content" : "6개월차부터 몸에 변화가 일어나네요 운동 재미있어요 선재가 운동 하라했을때부터 했어야 했어요",
+      "profileImg" : "http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg",
       "nickname" : "박정민",
-      "createdAt" : "2023-08-01 17:00:23"
+      "gender" : "male",
+      "createdAt" : "2023-08-20 15:46:12"
     }, {
       "id" : 5,
-      "title" : "강아지 산책",
-      "category" : "pet",
-      "region" : "강원도",
-      "content" : "저희 강아지 산책 시켜주실분~ 사람 안물고 애교 많아요 선재 같이했으면 좋겠어요",
+      "category" : "reading",
+      "title" : "선재야 독서 같이하자",
+      "content" : "독서 같이하자 이거야",
+      "region" : "충청남도",
+      "profileImg" : "http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg",
       "nickname" : "박정민",
-      "createdAt" : "2023-08-01 17:00:27"
+      "gender" : "male",
+      "createdAt" : "2023-08-20 15:48:31"
     }, {
-      "id" : 9,
-      "title" : "요가 후기",
-      "category" : "exercise",
-      "region" : "서울시",
-      "content" : "요가를 매일 아침마다 하니 몸이 유연해졌어요 선재한테 추천해주고 싶어요",
+      "id" : 6,
+      "category" : "study",
+      "title" : "선재야 공부 같이하자",
+      "content" : "공부 같이하자 이거야",
+      "region" : "경상남도",
+      "profileImg" : "http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg",
       "nickname" : "박정민",
-      "createdAt" : "2023-08-01 17:00:38"
+      "gender" : "male",
+      "createdAt" : "2023-08-20 15:40:12"
     } ]
   }
 }</code></pre>
@@ -965,6 +1001,16 @@ Content-Length: 1794
 <td class="tableblock halign-left valign-top"><p class="tableblock">글쓴이</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].profileImg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">프로필 이미지</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].gender</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">글쓴이 성별</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.posts[].createdAt</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">작성 시간</p></td>
@@ -982,11 +1028,11 @@ Content-Length: 1794
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">POST /post/i HTTP/1.1
 Content-Type: application/json
 Host: 43.202.118.132
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyNTIwMDY0fQ.5TFxi1NVW0q5TcSZ-4zlbhKEOT6g-Q0hnmCcfFsY2IgxC2dsMneABJZqeWdl7gajKTWf-ExCDyNClpyVyY3oQg
-Content-Length: 180
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkzNzUwOTYwfQ.v4vm-0PV7NXzgzTxY-X5USx2ry0uBB6oUOULIZmcFGIDJWe1A7UO52BF1nswtNwDRzGwcjBJdaFE71B5VGBSeQ
+Content-Length: 197
 
 {
-  "title" : "영화 추천",
+  "title" : "선재야 영화 추천 해줘",
   "category" : "movie",
   "region" : "서울시",
   "content" : "영화 추천해주세요 넷플릭스, 현재 상영 영화 상관 없습니다."
@@ -1032,14 +1078,14 @@ Content-Length: 180
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>category</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">카테고리</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>title</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">게시글 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>category</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">카테고리</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>content</code></p></td>
@@ -1085,9 +1131,9 @@ Content-Length: 70
 <h4 id="_게시글_삭제_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">DELETE /post/d/4 HTTP/1.1
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">DELETE /post/d/5 HTTP/1.1
 Host: 43.202.118.132
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyNTIwMDY0fQ.5TFxi1NVW0q5TcSZ-4zlbhKEOT6g-Q0hnmCcfFsY2IgxC2dsMneABJZqeWdl7gajKTWf-ExCDyNClpyVyY3oQg</code></pre>
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkzNzUwOTYwfQ.v4vm-0PV7NXzgzTxY-X5USx2ry0uBB6oUOULIZmcFGIDJWe1A7UO52BF1nswtNwDRzGwcjBJdaFE71B5VGBSeQ</code></pre>
 </div>
 </div>
 </div>
@@ -1194,14 +1240,14 @@ Content-Length: 70
 <h4 id="_게시글_수정_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">PATCH /post/u/2 HTTP/1.1
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">PATCH /post/u/3 HTTP/1.1
 Content-Type: application/json
 Host: 43.202.118.132
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkyNTIwMDY0fQ.5TFxi1NVW0q5TcSZ-4zlbhKEOT6g-Q0hnmCcfFsY2IgxC2dsMneABJZqeWdl7gajKTWf-ExCDyNClpyVyY3oQg
-Content-Length: 180
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTI3MjM5NTU5IiwiZXhwIjoxNjkzNzUwOTYwfQ.v4vm-0PV7NXzgzTxY-X5USx2ry0uBB6oUOULIZmcFGIDJWe1A7UO52BF1nswtNwDRzGwcjBJdaFE71B5VGBSeQ
+Content-Length: 197
 
 {
-  "title" : "영화 추천",
+  "title" : "선재야 영화 추천 해줘",
   "category" : "movie",
   "region" : "서울시",
   "content" : "영화 추천해주세요 넷플릭스, 현재 상영 영화 상관 없습니다."
@@ -1269,14 +1315,14 @@ Content-Length: 180
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>category</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">카테고리</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>title</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">게시글 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>category</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">카테고리</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>region</code></p></td>

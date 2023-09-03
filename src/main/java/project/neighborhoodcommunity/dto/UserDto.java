@@ -1,5 +1,6 @@
 package project.neighborhoodcommunity.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import project.neighborhoodcommunity.entity.User;
 public class UserDto {
     private String gender;
     private String nickname;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String profile_img;
 
     public UserDto(User user) {

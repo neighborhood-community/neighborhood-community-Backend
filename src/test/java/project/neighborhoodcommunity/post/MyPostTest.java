@@ -60,10 +60,11 @@ public class MyPostTest {
         String accessToken = jwtTokenProvider.createToken("2927239559");
 
         //When & Then
-        mockMvc.perform(get("/posts/my")
+        mockMvc.perform(get("/mypage/posts")
                         .header(HttpHeaders.HOST, "43.202.118.132")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
                         .queryParam("category", "all")
+                        .queryParam("perPage", "10")
                         .queryParam("page", "1"))
                 .andExpect(status().isOk())
                 .andDo(restDocs.document(
@@ -79,7 +80,8 @@ public class MyPostTest {
                                         운동 : exercise +
                                         독서 : reading +
                                         공부 : study"""),
-                                parameterWithName("page").description("1페이지당 8개의 게시글")
+                                parameterWithName("perPage").description("1페이지당 몇개의 게시글을 보여줄지 결정"),
+                                parameterWithName("page").description("n 페이지")
                         ),
                         responseFields(
                                 fieldWithPath("code").description("Http 상태코드"),
@@ -93,6 +95,8 @@ public class MyPostTest {
                                 fieldWithPath("region").description("지역"),
                                 fieldWithPath("content").description("게시글 내용"),
                                 fieldWithPath("nickname").description("글쓴이"),
+                                fieldWithPath("profileImg").description("프로필 이미지"),
+                                fieldWithPath("gender").description("글쓴이 성별"),
                                 fieldWithPath("createdAt").description("작성 시간")
                         )
                 ));
@@ -104,7 +108,7 @@ public class MyPostTest {
         String accessToken = jwtTokenProvider.createToken("2927239559");
 
         //When & Then
-        mockMvc.perform(delete("/post/d/{id}", 4)
+        mockMvc.perform(delete("/post/d/{id}", 5)
                         .header(HttpHeaders.HOST, "43.202.118.132")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken))
                 .andExpect(status().isOk())
@@ -127,13 +131,13 @@ public class MyPostTest {
         //Given
         String accessToken = jwtTokenProvider.createToken("2927239559");
         RequestPostDto postDto = new RequestPostDto();
-        postDto.setTitle("영화 추천");
+        postDto.setTitle("선재야 영화 추천 해줘");
         postDto.setCategory("movie");
         postDto.setRegion("서울시");
         postDto.setContent("영화 추천해주세요 넷플릭스, 현재 상영 영화 상관 없습니다.");
 
         //When & Then
-        mockMvc.perform(patch("/post/u/{id}", 2)
+        mockMvc.perform(patch("/post/u/{id}", 3)
                         .header(HttpHeaders.HOST, "43.202.118.132")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -147,8 +151,8 @@ public class MyPostTest {
                                 parameterWithName("id").description("게시글 번호")
                         ),
                         requestFields(
-                                fieldWithPath("category").description("카테고리"),
                                 fieldWithPath("title").description("게시글 제목"),
+                                fieldWithPath("category").description("카테고리"),
                                 fieldWithPath("region").description("지역"),
                                 fieldWithPath("content").description("글 내용")
                         )
@@ -160,7 +164,7 @@ public class MyPostTest {
         //Given
         String accessToken = jwtTokenProvider.createToken("2927239559");
         RequestPostDto postDto = new RequestPostDto();
-        postDto.setTitle("영화 추천");
+        postDto.setTitle("선재야 영화 추천 해줘");
         postDto.setCategory("movie");
         postDto.setRegion("서울시");
         postDto.setContent("영화 추천해주세요 넷플릭스, 현재 상영 영화 상관 없습니다.");
@@ -177,8 +181,8 @@ public class MyPostTest {
                                 headerWithName(HttpHeaders.AUTHORIZATION).description("Bearer {AccessToken}")
                         ),
                         requestFields(
-                                fieldWithPath("category").description("카테고리"),
                                 fieldWithPath("title").description("게시글 제목"),
+                                fieldWithPath("category").description("카테고리"),
                                 fieldWithPath("content").description("글 내용"),
                                 fieldWithPath("region").description("지역")
                         )

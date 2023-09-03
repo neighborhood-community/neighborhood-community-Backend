@@ -43,7 +43,6 @@ public class Post {
             throw new AccessDeniedException(CommonResponseStatus.UNEQUAL_USER);
 
         this.id = id;
-        this.title = postDto.getTitle();
         this.category = postDto.getCategory();
         this.region = postDto.getRegion();
         this.content = postDto.getContent();
